@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "..\\..\\..\\GitHub\\Starbase_YOLOL"
+		}
+	],
+	"settings": {
+		"yolol.lengthChecking.mode": "Optimize",
+		"yolol.chipType": "Basic",
+		"yolol.debug.enable": true
+	}
+}

@@ -1,0 +1,195 @@
+*{
+    position: relative;
+    background-color: rgba(239,255,152,255);
+    margin: 0;}
+
+.Main{
+    margin: 10px;
+    left: 22.5%;
+    background-color: black;
+    width: 800px;
+    height: 90%;
+    border-radius: 5px;
+    box-shadow: 0 0 2.5px;}
+
+.Menu{
+    background-color: black;
+    width: 50px;
+    left: 12.5px;
+    top: 25px;}
+
+.Menu button{
+    background-color: black;  
+    color: yellowgreen;
+    border: 0;
+    white-space: pre-line;}
+
+.Menu button:hover{
+    color: rgba(239,255,152,255);}
+
+.Menu div{
+    background-color: grey;
+    height: 1px;
+    width: 50px;
+    left: 22.5px;}
+
+.Sub_Menu{
+    background-color: transparent;
+    height: 30px;
+    width: 250px;
+    left: 250px;
+    top: -30px;}
+
+.Sub_Menu p{
+    background-color: transparent;
+    font-size: x-small;
+    width: 50px;
+    color: white;
+    left: 75px;
+    display: inline-block;}
+
+.Sub_Menu button{
+    background-color: transparent;
+    border: 0;
+    width: 50px;
+    font-size: x-small;
+    color: yellowgreen;}
+
+.Sub_Menu button:hover{
+    color: rgba(239,255,152,255);}
+
+.Cronometro{
+    background-color: black;
+    left: 100px;
+    width: 50%;
+    height: 93px;
+    top: -77px;}
+
+.Cronometro button{
+    background-color: rgba(8,111,2,255);
+    border-radius: 10px;
+    top: 60px;
+    left: 150px;
+    width: 75px;
+    height: 40px;}
+
+.Cronometro button:hover{
+    background-color: rgba(239,255,152,255);}
+
+.Cronometro div{
+    background-color: black;
+    color: white;
+    left: 250px;
+    font-size: larger;}
+
+.Cronometro div p,.Cronometro div p span{
+    background-color: black;}
+
+.Cadastro{
+    background-color: black;
+    width: 625px;
+    height: 250px;
+    left: 150px;
+    top: -45px;}
+
+.Cadastro p{
+    background-color: black;
+    color: white;}
+
+.Home{
+    display: none;}
+
+.Cadastrar{
+    height: 225px;
+    background-color: lightgrey;
+    display: none;
+    color: black;
+    border-radius: 5px;
+    padding: 5px;}
+
+.Cadastrar h1{
+    background-color: transparent;}
+
+.Cadastrar h2{
+    background-color: transparent;
+    color: grey;}
+
+.Cadastrar input{
+    background-color: transparent;
+    border: 0;
+    border-style: solid;
+    border-bottom-width: 2px;
+    border-bottom-color: grey;
+    padding: 0;
+    width: 150px;
+    margin-right: 400px;
+    margin-top: 20px;
+    margin-bottom: 15px;}
+
+.Cadastrar button{
+    background-color: rgba(8,111,2,255);
+    border-radius: 10px;
+    top: 5px;
+    left: 10px;
+    width: 150px;
+    height: 40px;
+    color: white;}
+
+.Approved{
+    height: 225px;
+    background-color: lightgrey;
+    display: none;
+    color: black;
+    border-radius: 5px;
+    padding: 5px;}
+
+.Approved h1{
+    background-color: transparent;}
+
+.Approved h2{
+    background-color: transparent;
+    color: grey;}
+
+.Non_Approved{
+    height: 225px;
+    background-color: lightgrey;
+    display: none;
+    color: black;
+    border-radius: 5px;
+    padding: 5px;}
+
+.Non_Approved h1{
+    background-color: transparent;}
+
+.Non_Approved h2{
+    background-color: transparent;
+    color: grey;}
+
+.List{
+    background-color: black;
+    top: 25px;
+    left: 150px;
+    width: 300px;
+    height: 200px;}
+
+.List div{
+    background-color: transparent;}
+
+.List p{
+    padding-left: 25px;
+    padding-right: 25px;
+    width: 50px;
+    height: 20px;
+    display: table-cell;}
+
+.Lines{
+    overflow-y: scroll;
+    width: 300px;
+    height: 80px;}
+
+.Lines::-webkit-scrollbar{
+    display: none;}
+
+.Lines p{
+    background-color: white;
+    color: black;}

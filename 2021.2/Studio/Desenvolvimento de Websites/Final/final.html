@@ -1,0 +1,91 @@
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Carlos Alexandre">
+    <title> Entrega </title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+    integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<Main class="Main">
+    <img src="images/1.png">
+    <nav class="Menu">
+        <div></div>
+        <button id="HomeB">Home</button>
+        <div></div>
+        <button id="CadastrarB">Cadastrar</button>
+        <div></div>
+        <button id="ApprovedB">Aprovados</button>
+        <div></div>
+        <button id="Non_ApprovedB">Reprovados</button>
+        <div></div>
+    </nav>
+    <div class="Cronometro">
+        <div>
+            <p>
+                <span id="hours">00</span>:
+                <span id="minutes">00</span>:
+                <span id="seconds">00</span>:
+                <span id="milliseconds">00</span>
+            </p>
+        </div>
+        <button id="Start">Iniciar</button>
+        <button id="Pause">Pausar</button>
+        <button id="Stop">Parar</button>
+        <button id="Zero">Zerar</button>
+    </div></div>
+    <div class="Cadastro">
+        <p id="Panel">Painel</p>
+        <div class="Home" id="Home"></div>
+        <div class="Cadastrar" id="Cadastrar">
+            <h1>Cadastro</h1>
+            <h2>Informe Nome e Nota</h2>
+            <input type="text" id="Input1" placeholder="Nome">
+            <input type="text" id="Input2" placeholder="Nota">
+            <button id="Save">SALVAR</button>
+        </div>
+        <div class="Approved" id="Approved">
+            <h1>Alunos Aprovados</h1>
+            <h2>Confira a lista de Aprovados</h2>
+            <lib class="List">
+                <div>
+                    <p>Nome</p>
+                    <p>Nota</p>
+                    <p>Status</p>
+                </div>
+                <list>
+                    <div id="A-lines" class="Lines">
+                    </div>
+                </list>
+            </lib>
+        </div>
+        <div class="Non_Approved" id="Non_Approved">
+            <h1>Alunos Reprovados</h1>
+            <h2>Confira a lista de Reprovados</h2>
+            <lib class="List">
+                <div>
+                    <p>Nome</p>
+                    <p>Nota</p>
+                    <p>Status</p>
+                </div>
+                <list>
+                    <div id="R-lines" class="Lines">
+                    </div>
+                </list>
+            </lib>
+        </div>
+    </div>
+    <nav class="Sub_Menu">
+        <button id="HomeB2">Home</button>
+        <button id="CadastrarB2">Cadastrar</button>
+        <button id="ApprovedB2">Aprovados</button>
+        <button id="Non_ApprovedB2">Reprovados</button>
+        <p>Aluno:</p>
+        <p>XPTO</p>
+    </nav>
+</Main>
+<script src="js/Cronometro.js"></script>
+<script src="js/Menu.js"></script>
+<script src="js/Cadastro.js"></script>
