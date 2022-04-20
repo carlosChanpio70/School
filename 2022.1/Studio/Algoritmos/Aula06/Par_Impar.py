@@ -7,6 +7,7 @@ play_select = int(input("O primeiro jogador será par(0) ou impar(1)? ")) #Fiz e
 if 0 <= play_select <= 1:
     loop_range = int(input("Quantas vezes deseja jogar? "))
     loop=(loop_range//2)+(loop_range%2)
+
     while loop_range:
         loop_range-=1
         play_1 = int(input("Primeiro jogador, escreva o seu número: "))
