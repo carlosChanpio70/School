@@ -933,3 +933,6 @@
 20:31:18 stream.go:37: Sent: {"jsonrpc":"2.0","result":null,"id":18}
 20:38:55 stream.go:85: Received: {"jsonrpc":"2.0","id":19,"method":"workspace/executeCommand","params":{"command":"activeDocument","arguments":["file:///c%3A/Users/carlo/OneDrive/Documentos/School/2022.1/Studio/Algoritmos/Aula07/07.py"]}}
 20:38:55 stream.go:37: Sent: {"jsonrpc":"2.0","result":null,"id":19}
+20:41:17 stream.go:85: Received: {"jsonrpc":"2.0","id":20,"method":"workspace/executeCommand","params":{"command":"activeDocument","arguments":["file:///c%3A/Users/carlo/OneDrive/Documentos/School/2022.1/Studio/Algoritmos/Aula07/09.py"]}}
+20:41:17 stream.go:37: Sent: {"jsonrpc":"2.0","result":null,"id":20}
+20:41:27 stream.go:85: Received: {"jsonrpc":"2.0","id":21,"method":"shutdown","params":null}
