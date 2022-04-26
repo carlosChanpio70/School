@@ -959,3 +959,4 @@
 22:58:12 stream.go:37: Sent: {"jsonrpc":"2.0","result":{"capabilities":{"textDocumentSync":{"openClose":true,"change":1,"save":{}},"completionProvider":{"triggerCharacters":[" ",":","+","-","*","/","%","=","^","\u003e","\u003c"]},"signatureHelpProvider":{},"documentFormattingProvider":true,"documentOnTypeFormattingProvider":{"firstTriggerCharacter":""},"workspace":{"workspaceFolders":{}}}},"id":0}
 22:58:12 stream.go:85: Received: {"jsonrpc":"2.0","method":"initialized","params":{}}
 22:58:12 stream.go:85: Received: {"jsonrpc":"2.0","method":"workspace/didChangeConfiguration","params":{"settings":{"yolol":{"autoopen":{"enable":true},"formatting":{"mode":"Compact"},"lengthChecking":{"mode":"Optimize"},"chipType":"Basic","debug":{"enable":true},"hotkeys":{"enable":true}},"nolol":{}}}}
+23:10:33 stream.go:85: Received: {"jsonrpc":"2.0","id":1,"method":"shutdown","params":null}
