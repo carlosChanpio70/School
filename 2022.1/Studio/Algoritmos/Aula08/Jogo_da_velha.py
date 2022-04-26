@@ -27,13 +27,15 @@ def Table_render(line1=[0,0,0,0,0,0],line2=[0,0,0,0,0,0],line3=[0,0,0,0,0,0]):
     line1 = Table_render_02(line1)
     line2 = Table_render_02(line2)
     line3 = Table_render_02(line3)
-    return f"{line1}\n{line2}\n{line3}"
+    line = "\n-----+-----+-----\n"
+    return f"{line1}{line}{line2}{line}{line3}"
 
 def Table_render_02(line):
     x1,x2,x3,o1,o2,o3 = line
     collum_1 = XO_Table_Render_selection(x1,o1)
     collum_2 = XO_Table_Render_selection(x2,o2)
     collum_3 = XO_Table_Render_selection(x3,o3)
+    line = "--------------------------\n"
     result  = f"{collum_1[0]}|{collum_2[0]}|{collum_3[0]}\n"
     result += f"{collum_1[1]}|{collum_2[1]}|{collum_3[1]}\n"
     result += f"{collum_1[2]}|{collum_2[2]}|{collum_3[2]}"
@@ -49,5 +51,5 @@ def XO_Table_Render_selection(X_select=False,O_select=False):
 
 line1 = [1,0,0,0,0,0]
 line2 = [0,0,0,0,0,0]
-line3 = [0,0,0,0,0,0]
+line3 = [0,0,0,0,0,1]
 print(Table_render(line1,line2,line3))
