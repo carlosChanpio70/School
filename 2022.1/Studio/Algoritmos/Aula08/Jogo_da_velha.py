@@ -1,24 +1,56 @@
 def main():
-
+    loop=1;play=[0,0,0,0,0,0,0,0,0]
     linha = ("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n")
     print(f"                  Jogo da Velha\n{linha}")
-    
-    
-    player1 = int(input("Jogador 1 - Insira o seu primeiro movimento: "))
-    player2 = int(input("Jogador 2 - Insira o seu primeiro movimento: "))
-    print(f"{linha}\n")
-
-    if _:
-        winner = "Jogador 1"
+    print(f"   Jogue usando coordenadas para cada ponto na tabela")
+    print(f"  1 2 3\n1\n2\n3")
+    while loop:
+        play = Table_play(play,1)
+        who_won,table = Table_render_winner_check(play)
+        if who_won:
+            loop=0
+        else:
+            print(table)
+            play = Table_play(play,2)
+            who_won,table = Table_render_winner_check(play)
+            if who_won:
+                loop=0
+            else:
+                print(table)
+    if who_won==1:
+        winner = 1
     else:
-        winner = "Jogador 2"
+        winner = 2
+    print(f"\n{linha} O Jogador {winner} venceu, com a tabela\n{table}")
 
-
-    print(f"\n{linha} O Jogador {winner} ")
-
+def Table_play(line,play):
+    play = [int(input(f"Jogador {play}, o que jogará? ")),play]
+    if play[0]==11:
+        line[0]=play[1]
+    elif play[0]==12:
+        line[1]=play[1]
+    elif play[0]==13:
+        line[2]=play[1]
+    elif play[0]==21:
+        line[3]=play[1]
+    elif play[0]==22:
+        line[4]=play[1]
+    elif play[0]==23:
+        line[5]=play[1]
+    elif play[0]==31:
+        line[6]=play[1]
+    elif play[0]==32:
+        line[7]=play[1]
+    elif play[0]==33:
+        line[8]=play[1]
+    else:
+        print("Valor inválido, digite novamente")
+        play = play[1]
+        return Table_play(line,play)
+    return line
 
 #checks if a player has won, also runs render commands
-def Table_render_winner_check(line=[0,0,0,0,0,0,0,0,0]):
+def Table_render_winner_check(line):
     x1,x2,x3,x4,x5,x6,x7,x8,x9 = line
     if x1==x5==x9!=0:
         x10,x0=x1,x10+2
@@ -96,6 +128,4 @@ def Table_render_02(line):
     result += f"{collum_1[2]}|{collum_2[2]}|{collum_3[2]}"
     return result
 
-_,console = Table_render_winner_check([0,2,0,0,2,0,0,2,0])
-print(_)
-print(console)
+main()
