@@ -1,3 +1,4 @@
+#Feito por Carlos Alexandre Camarino Terra e 
 def main():
     loop=1;play=[0,0,0,0,0,0,0,0,0]
     linha = ("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n")
