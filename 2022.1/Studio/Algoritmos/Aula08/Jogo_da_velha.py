@@ -1,4 +1,4 @@
-#Feito por Carlos Alexandre Camarino Terra e 
+#Feito por Carlos Alexandre Camarino Terra e Renato da Silva Fernandes
 def main():
     loop=1;play=[0,0,0,0,0,0,0,0,0]
     linha = ("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n")
