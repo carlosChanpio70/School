@@ -18,7 +18,11 @@ def main():
                 loop=0
             else:
                 print(table)
-    print(f"\n{linha} O Jogador {who_won} venceu, com a tabela:\n{table}")
+    if who_won==3:
+        print(f"Deu velha, ",end="")
+    else:
+        print(f"\n{linha} O Jogador {who_won} venceu, ",end="")
+    print(f"com a tabela:\n{table}")
 
 #Takes the current play from the player and returns the updated list
 def Table_play(line,play):
@@ -32,8 +36,8 @@ def Table_play(line,play):
         return Table_play_if_invalid(play,line)
     return line
 
-def Table_play_if(play,line,play_check,line_index):
-    if play[0]==play_check[line_index]:
+def Table_play_if(play,line,play_list,line_index):
+    if play[0]==play_list[line_index]:
         if line[line_index]==0:
             line[line_index]=play[1]
         else:
@@ -65,6 +69,8 @@ def Table_render_winner_check(line):
         x,line = Winner_check_line_change(line,x4,8,3,4,5)
     elif x7==x8==x9!=0:
         x,line = Winner_check_line_change(line,x7,8,6,7,8)
+    elif not 0 in line:
+        x=3
     else:
         x=0
     return x,Table_render(line)
