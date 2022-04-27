@@ -1,7 +1,4 @@
 #Feito por Carlos Alexandre Camarino Terra e Renato da Silva Fernandes
-from asyncore import loop
-
-
 def main():
     loop=1;play=[0,0,0,0,0,0,0,0,0]
     linha = ("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n")
