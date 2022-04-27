@@ -18,11 +18,7 @@ def main():
                 loop=0
             else:
                 print(table)
-    if who_won==1:
-        winner = 1
-    else:
-        winner = 2
-    print(f"\n{linha} O Jogador {winner} venceu, com a tabela\n{table}")
+    print(f"\n{linha} O Jogador {who_won} venceu, com a tabela\n{table}")
 
 def Table_play(line,play):
     play = [int(input(f"Jogador {play}, o que jogará? ")),play]
