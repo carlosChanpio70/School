@@ -13,94 +13,76 @@ def main():
     else:
         winner = "Jogador 2"
 
-    line1[x1,x2,x3,o1,o2,o3]
-    line2[x1,x2,x3,o1,o2,o3]
-    line3[x1,x2,x3,o1,o2,o3]
-    Table_render(line1,line2,line3)
 
     print(f"\n{linha} O Jogador {winner} ")
 
 
-
+#checks if a player has won, also runs render commands
 def Table_render_winner_check(line=[0,0,0,0,0,0,0,0,0]):
     x1,x2,x3,x4,x5,x6,x7,x8,x9 = line
-    if x1==x5==x9:
-        person_won=x1
-        win=[x1,0,0,0,x5,0,0,0,x9]
-    elif x3==x5==x7:
-        person_won=x3
-        win=[0,0,x3,0,x5,0,x7,0,0]
-    elif x1==x4==x7:
-        person_won=x1
-        win=[x1,0,0,x4,0,0,x7,0,0]
-    elif x2==x5==x8:
-        person_won=x2
-        win=[x1,0,0,0,x5,0,0,0,x9]
-    elif x3==x6==x9:
-        person_won=x3
-        win=[x1,0,0,0,x5,0,0,0,x9]
-    elif x1==x2==x3:
-        person_won=x1
-        win=[x1,0,0,0,x5,0,0,0,x9]
-    elif x4==x5==x6:
-        person_won=x4
-        win=[x1,0,0,0,x5,0,0,0,x9]
-    elif x7==x8==x9:
-        person_won=x7
-        win=[x1,0,0,0,x5,0,0,0,x9]
+    if x1==x5==x9!=0:
+        x10=x1
+        x0=x10+2
+        line=[x0,x2,x3,x4,x0,x6,x7,x8,x0]
+    elif x3==x5==x7!=0:
+        x10=x3
+        x0=x10+4
+        line=[x1,x2,x0,x4,x0,x6,x0,x8,x9]
+    elif x1==x4==x7!=0:
+        x10=x1
+        x0=x10+6
+        line=[x0,x2,x3,x0,x5,x6,x0,x8,x9]
+    elif x2==x5==x8!=0:
+        x10=x2
+        x0=x10+6
+        line=[x1,x0,x3,x4,x0,x6,x7,x0,x9]
+    elif x3==x6==x9!=0:
+        x10=x3
+        x0=x10+6
+        line=[x1,x2,x0,x4,x5,x0,x7,x8,x0]
+    elif x1==x2==x3!=0:
+        x10=x1
+        x0=x10+8
+        line=[x0,x0,x0,x4,x5,x6,x7,x8,x9]
+    elif x4==x5==x6!=0:
+        x10=x4
+        x0=x10+8
+        line=[x1,x2,x3,x0,x0,x0,x7,x8,x9]
+    elif x7==x8==x9!=0:
+        x10=x7
+        x0=x10+8
+        line=[x1,x2,x3,x4,x5,x6,x0,x0,x0]
     else:
-        return 0,Table_render(line)
-    return person_won,Table_render_win_01(line,win)
+        x10=0
+    return x10,Table_render(line)
 
-def Table_render_win_01(line,win=[0,0,0,0,0,0,0,0,0]):
-    line1 = Table_render_02(line[0:3],win[0:3])
-    line2 = Table_render_02(line[3:6],win[3:6])
-    line3 = Table_render_02(line[6:9],win[6:9])
-    line = "\n-----+-----+-----\n"
-    return f"{line1}{line}{line2}{line}{line3}"
-
-def Table_render_win_02(line,win):
-    n1,n2,n3,n4,n5,n6 = line,win
-    collum_1 = XO_Table_Render_selection(n1)
-    collum_2 = XO_Table_Render_selection(n2)
-    collum_3 = XO_Table_Render_selection(n3)
-    result  = f"{collum_1[0]}|{collum_2[0]}|{collum_3[0]}\n"
-    result += f"{collum_1[1]}|{collum_2[1]}|{collum_3[1]}\n"
-    result += f"{collum_1[2]}|{collum_2[2]}|{collum_3[2]}"
-    return result
-
-def XO_Table_render_win_render(XO_select=False,win=False):
-    if win==1:
-        if XO_select == 1:
-            return ["\\\\\\/ "," \X\ "," /\\\\\\"]
-        else:
-            return ["\/-\ "," |\| "," \-/\\"]
-    elif win==2:
-        if XO_select == 1:
-            return [" \///"," /X/ ","///\ "]
-        else:
-            return [" /-\/"," |/| ","/\-/ "]
-    elif win==3:
-        if XO_select == 1:
-            return [" \|/ ","  X  "," /|\ "]
-        else:
-            return [" /-\ "," ||| "," \-/ "]
-    elif win==4:
-        if XO_select == 1:
-            return [" \ / ","--X--"," / \ "]
-        elif XO_select:
-            return [" /-\ ","-|-|-"," \-/ "]
-    else:
-        return XO_Table_Render_selection(XO_select)
-
-def XO_Table_Render_selection(XO_select=False):
+#Contains all data for the renderers
+def XO_Table_render_selection(XO_select=False):
     if XO_select == 1:
         return [" \ / ","  X  "," / \ "]
-    elif XO_select:
+    elif XO_select == 2:
         return [" /-\ "," | | "," \-/ "]
-    return ["     ","     ","     "]
+    elif XO_select == 3:
+        return ["\\\\\\/ "," \X\ "," /\\\\\\"]
+    elif XO_select == 4:
+        return ["\/-\ "," |\| "," \-/\\"]
+    elif XO_select == 5:
+        return [" \///"," /X/ ","///\ "]
+    elif XO_select == 6:
+        return [" /-\/"," |/| ","/\-/ "]
+    elif XO_select == 7:
+        return [" \|/ ","  X  "," /|\ "]
+    elif XO_select == 8:
+        return [" /-\ "," ||| "," \-/ "]
+    elif XO_select == 9:
+        return [" \ / ","--X--"," / \ "]
+    elif XO_select == 10:
+        return [" /-\ ","-|-|-"," \-/ "]
+    else:
+        return ["     ","     ","     "]
 
-def Table_render(line=[0,0,0,0,0,0,0,0,0]):
+#Render's the table
+def Table_render(line):
     line1 = Table_render_02(line[0:3])
     line2 = Table_render_02(line[3:6])
     line3 = Table_render_02(line[6:9])
@@ -109,14 +91,14 @@ def Table_render(line=[0,0,0,0,0,0,0,0,0]):
 
 def Table_render_02(line):
     n1,n2,n3 = line
-    collum_1 = XO_Table_Render_selection(n1)
-    collum_2 = XO_Table_Render_selection(n2)
-    collum_3 = XO_Table_Render_selection(n3)
+    collum_1 = XO_Table_render_selection(n1)
+    collum_2 = XO_Table_render_selection(n2)
+    collum_3 = XO_Table_render_selection(n3)
     result  = f"{collum_1[0]}|{collum_2[0]}|{collum_3[0]}\n"
     result += f"{collum_1[1]}|{collum_2[1]}|{collum_3[1]}\n"
     result += f"{collum_1[2]}|{collum_2[2]}|{collum_3[2]}"
     return result
 
-
-
-print(Table_render([1,0,0,0,0,0,0,0,2]))
+_,console = Table_render_winner_check([0,0,0,0,0,0,0,0,0])
+print(_)
+print(console)
