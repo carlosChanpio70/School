@@ -22,28 +22,28 @@ def Table_render_winner_check(line=[0,0,0,0,0,0,0,0,0]):
     x1,x2,x3,x4,x5,x6,x7,x8,x9 = line
     if x1==x5==x9!=0:
         x10,x0=x1,x10+2
-        line=[x0,x2,x3,x4,x0,x6,x7,x8,x0]
+        line[0],line[4],line[8]=x0,x0,x0
     elif x3==x5==x7!=0:
         x10,x0=x3,x3+4
-        line=[x1,x2,x0,x4,x0,x6,x0,x8,x9]
+        line[2],line[4],line[6]=x0,x0,x0
     elif x1==x4==x7!=0:
         x10,x0=x1,x1+6
-        line=[x0,x2,x3,x0,x5,x6,x0,x8,x9]
+        line[0],line[3],line[6]=x0,x0,x0
     elif x2==x5==x8!=0:
         x10,x0=x2,x2+6
-        line=[x1,x0,x3,x4,x0,x6,x7,x0,x9]
+        line[1],line[4],line[7]=x0,x0,x0
     elif x3==x6==x9!=0:
         x10,x0=x3,x3+6
-        line=[x1,x2,x0,x4,x5,x0,x7,x8,x0]
+        line[2],line[5],line[8]=x0,x0,x0
     elif x1==x2==x3!=0:
         x10,x0=x1,x1+8
-        line=[x0,x0,x0,x4,x5,x6,x7,x8,x9]
+        line[0],line[1],line[2]=x0,x0,x0
     elif x4==x5==x6!=0:
         x10,x0=x4,x4+8
-        line=[x1,x2,x3,x0,x0,x0,x7,x8,x9]
+        line[3],line[4],line[5]=x0,x0,x0
     elif x7==x8==x9!=0:
         x10,x0=x7,x7+8
-        line=[x1,x2,x3,x4,x5,x6,x0,x0,x0]
+        line[6],line[7],line[8]=x0,x0,x0
     else:
         x10=0
     return x10,Table_render(line)
@@ -91,6 +91,6 @@ def Table_render_02(line):
     result += f"{collum_1[2]}|{collum_2[2]}|{collum_3[2]}"
     return result
 
-_,console = Table_render_winner_check([0,0,0,0,0,0,0,0,0])
+_,console = Table_render_winner_check([0,2,0,0,2,0,0,2,0])
 print(_)
 print(console)
