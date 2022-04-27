@@ -1,4 +1,7 @@
 #Feito por Carlos Alexandre Camarino Terra e Renato da Silva Fernandes
+from asyncore import loop
+
+
 def main():
     loop=1;play=[0,0,0,0,0,0,0,0,0]
     linha = ("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n")
@@ -18,66 +21,61 @@ def main():
                 loop=0
             else:
                 print(table)
-    print(f"\n{linha} O Jogador {who_won} venceu, com a tabela\n{table}")
+    print(f"\n{linha} O Jogador {who_won} venceu, com a tabela:\n{table}")
 
 #Takes the current play from the player and returns the updated list
 def Table_play(line,play):
     play = [int(input(f"Jogador {play}, o que jogará? ")),play]
-    if play[0]==11:
-        line[0]=play[1]
-    elif play[0]==12:
-        line[1]=play[1]
-    elif play[0]==13:
-        line[2]=play[1]
-    elif play[0]==21:
-        line[3]=play[1]
-    elif play[0]==22:
-        line[4]=play[1]
-    elif play[0]==23:
-        line[5]=play[1]
-    elif play[0]==31:
-        line[6]=play[1]
-    elif play[0]==32:
-        line[7]=play[1]
-    elif play[0]==33:
-        line[8]=play[1]
+    play_list,loop = [11,12,13,21,22,23,31,32,33],0
+    if play[0] in play_list:
+        while loop<9:
+            line=Table_play_if(play,line,play_list,loop)
+            loop += 1
     else:
-        print("Valor inválido, digite novamente")
-        play = play[1]
-        return Table_play(line,play)
+        return Table_play_if_invalid(play,line)
     return line
+
+def Table_play_if(play,line,play_check,line_index):
+    if play[0]==play_check[line_index]:
+        if line[line_index]==0:
+            line[line_index]=play[1]
+        else:
+            return Table_play_if_invalid(play,line)
+    return line
+
+def Table_play_if_invalid(play,line):
+    print("Valor inválido, digite novamente")
+    play = play[1]
+    return Table_play(line,play)
 
 #Checks if a player has won and outputs 1 or 2 if so.
 #Also outputs the current string of the Table.
 def Table_render_winner_check(line):
     x1,x2,x3,x4,x5,x6,x7,x8,x9 = line
     if x1==x5==x9!=0:
-        x10,x0=x1,x10+2
-        line[0],line[4],line[8]=x0,x0,x0
+        x,line = Winner_check_line_change(line,x1,2,0,4,8)
     elif x3==x5==x7!=0:
-        x10,x0=x3,x3+4
-        line[2],line[4],line[6]=x0,x0,x0
+        x,line = Winner_check_line_change(line,x3,4,2,4,6)
     elif x1==x4==x7!=0:
-        x10,x0=x1,x1+6
-        line[0],line[3],line[6]=x0,x0,x0
+        x,line = Winner_check_line_change(line,x1,6,0,3,6)
     elif x2==x5==x8!=0:
-        x10,x0=x2,x2+6
-        line[1],line[4],line[7]=x0,x0,x0
+        x,line = Winner_check_line_change(line,x2,6,1,4,7)
     elif x3==x6==x9!=0:
-        x10,x0=x3,x3+6
-        line[2],line[5],line[8]=x0,x0,x0
+        x,line = Winner_check_line_change(line,x3,6,2,5,8)
     elif x1==x2==x3!=0:
-        x10,x0=x1,x1+8
-        line[0],line[1],line[2]=x0,x0,x0
+        x,line = Winner_check_line_change(line,x1,8,0,1,2)
     elif x4==x5==x6!=0:
-        x10,x0=x4,x4+8
-        line[3],line[4],line[5]=x0,x0,x0
+        x,line = Winner_check_line_change(line,x4,8,3,4,5)
     elif x7==x8==x9!=0:
-        x10,x0=x7,x7+8
-        line[6],line[7],line[8]=x0,x0,x0
+        x,line = Winner_check_line_change(line,x7,8,6,7,8)
     else:
-        x10=0
-    return x10,Table_render(line)
+        x=0
+    return x,Table_render(line)
+
+def Winner_check_line_change(line,x,y,x1,x2,x3):
+    x,x0=x,x+y
+    line[x1],line[x2],line[x3]=x0,x0,x0
+    return x,line
 
 #Contains string data for renderer 
 #Including checking wich one is going to be outputted
@@ -129,4 +127,6 @@ def Table_render_02(line):
     result += f"{collum_1[2]}|{collum_2[2]}|{collum_3[2]}"
     return result
 
+
 main()
+
