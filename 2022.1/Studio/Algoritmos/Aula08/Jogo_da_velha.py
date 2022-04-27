@@ -20,6 +20,7 @@ def main():
                 print(table)
     print(f"\n{linha} O Jogador {who_won} venceu, com a tabela\n{table}")
 
+#Takes the current play from the player and returns the updated list
 def Table_play(line,play):
     play = [int(input(f"Jogador {play}, o que jogará? ")),play]
     if play[0]==11:
@@ -46,7 +47,8 @@ def Table_play(line,play):
         return Table_play(line,play)
     return line
 
-#checks if a player has won, also runs render commands
+#Checks if a player has won and outputs 1 or 2 if so.
+#Also outputs the current string of the Table.
 def Table_render_winner_check(line):
     x1,x2,x3,x4,x5,x6,x7,x8,x9 = line
     if x1==x5==x9!=0:
@@ -77,7 +79,9 @@ def Table_render_winner_check(line):
         x10=0
     return x10,Table_render(line)
 
-#Contains all data for the renderers
+#Contains string data for renderer 
+#Including checking wich one is going to be outputted
+#1-2 Normal XO,3-6 Diagonal XO,6-10 Vertical and Horizontal XO
 def XO_Table_render_selection(XO_select=False):
     if 0<XO_select<=4:
         if 0<XO_select<=2:
@@ -107,7 +111,7 @@ def XO_Table_render_selection(XO_select=False):
     else:
         return ["     ","     ","     "]
 
-#Render's the table
+#Creates the final table string.
 def Table_render(line):
     line1 = Table_render_02(line[0:3])
     line2 = Table_render_02(line[3:6])
