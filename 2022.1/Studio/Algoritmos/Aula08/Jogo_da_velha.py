@@ -50,26 +50,31 @@ def Table_render_winner_check(line=[0,0,0,0,0,0,0,0,0]):
 
 #Contains all data for the renderers
 def XO_Table_render_selection(XO_select=False):
-    if XO_select == 1:
-        return [" \ / ","  X  "," / \ "]
-    elif XO_select == 2:
-        return [" /-\ "," | | "," \-/ "]
-    elif XO_select == 3:
-        return ["\\\\\\/ "," \X\ "," /\\\\\\"]
-    elif XO_select == 4:
-        return ["\/-\ "," |\| "," \-/\\"]
-    elif XO_select == 5:
-        return [" \///"," /X/ ","///\ "]
-    elif XO_select == 6:
-        return [" /-\/"," |/| ","/\-/ "]
-    elif XO_select == 7:
-        return [" \|/ ","  X  "," /|\ "]
-    elif XO_select == 8:
-        return [" /-\ "," ||| "," \-/ "]
-    elif XO_select == 9:
-        return [" \ / ","--X--"," / \ "]
-    elif XO_select == 10:
-        return [" /-\ ","-|-|-"," \-/ "]
+    if 0<XO_select<=4:
+        if 0<XO_select<=2:
+            if XO_select == 1:
+                return [" \ / ","  X  "," / \ "]
+            else:
+                return [" /-\ "," | | "," \-/ "]
+        elif XO_select == 3:
+            return ["\\\\\\/ "," \X\ "," /\\\\\\"]
+        else:
+            return ["\/-\ "," |\| "," \-/\\"]
+    elif 4<XO_select<=8:
+        if 4<XO_select<=6:
+            if XO_select == 5:
+                return [" \///"," /X/ ","///\ "]
+            else:
+                return [" /-\/"," |/| ","/\-/ "]
+        elif XO_select == 7:
+            return [" \|/ ","  X  "," /|\ "]
+        else:
+            return [" /-\ "," ||| "," \-/ "]
+    elif 8<XO_select<=10:
+        if XO_select == 9:
+            return [" \ / ","--X--"," / \ "]
+        else:
+            return [" /-\ ","-|-|-"," \-/ "]
     else:
         return ["     ","     ","     "]
 
