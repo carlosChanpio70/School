@@ -130,6 +130,4 @@ def Table_render_02(line):
     result += f"{collum_1[2]}|{collum_2[2]}|{collum_3[2]}"
     return result
 
-
 main()
-

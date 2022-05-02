@@ -17,4 +17,4 @@ def interval_logic_02(n1,n2):
     nr += f"{n1}"
     return f"({nr})"
 
-main()
+main() 
