@@ -1,10 +1,11 @@
 #Feito por Carlos Alexandre Camarino Terra e Renato da Silva Fernandes
 def main():
     loop=1;play=[0,0,0,0,0,0,0,0,0]
-    linha = ("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n")
-    print(f"                  Jogo da Velha\n{linha}")
+    line01 = "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n"
+    line02 = "   |   |   |\n----+---+---+"
+    print(f"                  Jogo da Velha\n{line01}")
     print(f"   Jogue usando coordenadas para cada ponto na tabela")
-    print(f"  1 2 3\n1\n2\n3")
+    print(f"  1 | 2 | 3 |\n1{line02}\n2{line02}\n3{line02}")
     while loop:
         play = Table_play(play,1)
         who_won,table = Table_render_winner_check(play)
@@ -21,7 +22,7 @@ def main():
     if who_won==3:
         print(f"Deu velha, ",end="")
     else:
-        print(f"\n{linha} O Jogador {who_won} venceu, ",end="")
+        print(f"\n{line01} O Jogador {who_won} venceu, ",end="")
     print(f"com a tabela:\n{table}")
 
 #Takes the current play from the player and returns the updated list
