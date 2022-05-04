@@ -16,16 +16,16 @@ def get_prices(i):
         loop+=1
     return values_processing(values,i)
 
-def values_processing(values01,i):
-    values02,value_sum,medium = [],0,[0,0]
-    for value in values01:
-        values02.append((value*1.2))
+def values_processing(prod_amount,values_given=[]):
+    values_new,value_sum,medium = [],0,[]
+    for value in values_given:
+        values_new.append((value*1.2))
         value_sum += value
-    medium[0]=(value_sum/i)
+    medium[0]=(value_sum/prod_amount)
     value_sum=0
-    for value in values02:
+    for value in values_new:
         value_sum+=value
-    medium[1]=(value_sum/i)
-    return values01,values02,medium
+    medium[1]=(value_sum/prod_amount)
+    return values_given,values_new,medium
 
 main()
