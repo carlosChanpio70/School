@@ -13,13 +13,16 @@ def perfect_n_finder_amount(x):
 
 def perfect_n_finder(x):
     str,sum = f"{x} = 1",1
-    for loop in range(2,int(x/2)+1):
-        if x%loop==0:
-            str+=f"+{loop}"
-            sum+=loop
-        if sum==x:
-            return str
-        if sum>x:
-            return False
+    if x%2==0:
+        for loop in range(2,int(x/2)+1):
+            if x%loop==0:
+                str+=f"+{loop}"
+                sum+=loop
+            if sum==x:
+                return str
+            if sum>x:
+                return False
+    else:
+        return False
 
 main()
