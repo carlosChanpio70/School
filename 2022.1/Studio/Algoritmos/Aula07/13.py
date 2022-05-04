@@ -4,8 +4,7 @@ def main():
     print(f"A média de pares é: {interval[2]}")
     print(f"A média dos números é: {interval[3]}")
 
-def input_loop():
-    values=[]
+def input_loop(values=[],value=0):
     loop=1
     while loop:
         value = int(input(f"Insira o valor {loop}: "))
@@ -23,9 +22,7 @@ def interval_check(values):
             even+=1
         else:
             odd+=1
-    for i in values:
         sum+=i
-    for i in values:
         amount+=1
     medium=get_medium(sum,amount)
     even_medium=get_medium(even,amount)
