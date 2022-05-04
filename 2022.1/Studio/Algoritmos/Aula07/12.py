@@ -5,8 +5,7 @@ def main():
     print(f"Entre 51 e 75  há {interval[2]} valores.")
     print(f"Entre 76 e 100 há {interval[3]} valores.")
 
-def input_loop():
-    values=[]
+def input_loop(values=[]):
     loop=1
     while loop:
         value = int(input(f"Insira o valor {loop}: "))
