@@ -115,20 +115,21 @@ def XO_Table_render_selection(XO_select=False):
 
 #Creates the final table string.
 def Table_render(line):
-    line1 = Table_render_02(line[0:3])
-    line2 = Table_render_02(line[3:6])
-    line3 = Table_render_02(line[6:9])
-    line = "\n-----+-----+-----\n"
-    return f"{line1}{line}{line2}{line}{line3}"
+    line1 = Table_render_02(line[0:3],1)
+    line2 = Table_render_02(line[3:6],2)
+    line3 = Table_render_02(line[6:9],3)
+    line01 = "   1  |  2  |  3  \n"
+    line02 = "\n------+-----+-----\n"
+    return f"{line01}{line1}{line02}{line2}{line02}{line3}"
 
-def Table_render_02(line):
+def Table_render_02(line,x):
     n1,n2,n3 = line
     collum_1 = XO_Table_render_selection(n1)
     collum_2 = XO_Table_render_selection(n2)
     collum_3 = XO_Table_render_selection(n3)
-    result  = f"{collum_1[0]}|{collum_2[0]}|{collum_3[0]}\n"
-    result += f"{collum_1[1]}|{collum_2[1]}|{collum_3[1]}\n"
-    result += f"{collum_1[2]}|{collum_2[2]}|{collum_3[2]}"
+    result  = f" {collum_1[0]}|{collum_2[0]}|{collum_3[0]}\n"
+    result += f"{x}{collum_1[1]}|{collum_2[1]}|{collum_3[1]}\n"
+    result += f" {collum_1[2]}|{collum_2[2]}|{collum_3[2]}"
     return result
 
 main()
