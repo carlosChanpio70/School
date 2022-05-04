@@ -1,8 +1,7 @@
 def main():
-    in_range,out_range=0,0
     for i in range(1,11):
         n = int(input(f"Digite o valor {i}: "))
-        in_range,out_range = value_processing(n,in_range,out_range)
+        in_range,out_range = value_processing(n)
     print(f"{in_range} estão entre 10 e 20.")
     print(f"{out_range} não estão entre 10 e 20.")
 
