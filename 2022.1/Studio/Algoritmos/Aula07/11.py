@@ -14,10 +14,11 @@ def input_loop(n):
         value = int(input(f"Insira o valor {loop}: "))
         values.append(value)
         loop+=1
-    medium = medium_(values,n)
-    return negatives_positives(values,n)
+    medium = get_medium(values,n)
+    negatives,positives = negatives_positives(values,n)
+    return medium,negatives,positives
 
-def medium_(values,n):
+def get_medium(values,n):
     value=0
     for i in values:
         value+=i
