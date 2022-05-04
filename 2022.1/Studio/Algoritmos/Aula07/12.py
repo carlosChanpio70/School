@@ -22,14 +22,15 @@ def interval_check(values):
     interval_75=0
     interval_100=0    
     for i in values:
-        if 0<=i<=25:
-            interval_25+=1
-        elif 25<i<=50:
-            interval_50+=1
-        elif 51<i<=75:
-            interval_75+=1
-        elif 76<i<=100:
-            interval_100+=1
+        if 0<=i:
+            if i<=25:
+                interval_25+=1
+            elif i<=50:
+                interval_50+=1
+            elif i<=75:
+                interval_75+=1
+            elif i<=100:
+                interval_100+=1
     return [interval_25,interval_50,interval_75,interval_100]
 
 main()
