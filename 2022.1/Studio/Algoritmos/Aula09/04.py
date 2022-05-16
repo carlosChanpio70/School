@@ -7,3 +7,4 @@ def contarImpar(n1,n2,odd=0):
     return odd
 
 print(contarImpar(1,150))
+print(contarImpar(100,1))

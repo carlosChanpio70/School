@@ -1,6 +1,3 @@
-import re
-
-
 def calcularQuociente(dividendo,divisor):
     return int(dividendo/divisor)
 
