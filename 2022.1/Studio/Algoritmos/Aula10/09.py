@@ -6,5 +6,4 @@ def main(list):
         size += 1
     return sum/size
 
-
 print(main([5, 10, 15]))
