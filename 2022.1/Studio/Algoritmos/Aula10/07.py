@@ -1,5 +1,11 @@
 def main(string, caracter):
-    string = string.split(caracter)
-    return string[0]
+    r_string = string
+    i = 0
+    if caracter in string:
+        while r_string == string:
+            if string[i] == caracter:
+                r_string = string[:i]
+            i += 1
+    return r_string
 
-print(main("Hello, World", "o"))
+print(main("Hello, World", "W"))
