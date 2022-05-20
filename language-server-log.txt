@@ -1450,3 +1450,4 @@
 21:27:50 stream.go:37: Sent: {"jsonrpc":"2.0","result":null,"id":1}
 21:30:11 stream.go:85: Received: {"jsonrpc":"2.0","id":2,"method":"workspace/executeCommand","params":{"command":"activeDocument","arguments":["file:///c%3A/Users/carlo/OneDrive/Documentos/School/2022.1/Studio/Algoritmos/Aula11/Jogo_da_Forca.py"]}}
 21:30:11 stream.go:37: Sent: {"jsonrpc":"2.0","result":null,"id":2}
+21:42:11 stream.go:85: Received: {"jsonrpc":"2.0","id":3,"method":"shutdown","params":null}

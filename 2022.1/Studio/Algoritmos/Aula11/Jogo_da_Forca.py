@@ -1,11 +1,11 @@
 def main():
-    played = [];losses = [];wins = []
+    losses = [];wins = []
     game_state = False
     word_in = input("Qual será a palavra usada? ").upper()
     table_print(word_in, losses, wins)
     while not game_state:
-        played, losses, wins = _play(word_in, played, losses, wins)
-        game_state = win_check(word_in, played, losses)
+        losses, wins = _play(word_in, losses, wins)
+        game_state = win_check(word_in, losses, wins)
     if game_state == 1:
         print("Você venceu com a tabela:")
     else:
@@ -13,24 +13,23 @@ def main():
     table_print(word_in, losses, wins)
 
 
-def _play(word_in, played, losses, wins):
+def _play(word_in, losses, wins):
     play = input("Digite uma letra: ").upper()
-    if play in played or len(play) != 1:
+    if play in losses+wins or len(play) != 1:
         print("Valor já digitado/inválido digite novamente.")
-        return _play(word_in, played, losses, wins)
+        return _play(word_in, losses, wins)
     elif play in word_in:
         wins.append(play)
     else:
         losses.append(play)
-    played.append(play)
     table_print(word_in, losses, wins)
-    return played, losses, wins
+    return losses, wins
 
 
-def win_check(word_in, played, losses):
+def win_check(word_in, losses, wins):
     win_n = 0;word_len = len(word_in)
     for i in word_in:
-        if i in played:
+        if i in losses+wins:
             win_n += 1
     if win_n == word_len:
         return 1
