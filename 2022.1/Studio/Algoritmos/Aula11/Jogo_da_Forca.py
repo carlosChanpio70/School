@@ -1,6 +1,5 @@
 def main():
-    losses = [];wins = []
-    game_state = False
+    losses = [];wins = [];game_state = False
     word_in = input("Qual será a palavra usada? ").upper()
     table_print(word_in, losses, wins)
     while not game_state:
@@ -46,12 +45,9 @@ def table_print(word_in, losses, wins):
         else:
             word_r += "_"
         word_r += " "
-    if len(losses) > 0:
-        arm_left = " "
-    else:
-        arm_left = "\\"
-    if len(losses) > 1:
-        arm_right = " "
+    if len(losses) > 0: arm_left = " "
+    else:               arm_left = "\\"
+    if len(losses) > 1: arm_right = " "
     else:
         arm_right = "/"
     if len(losses) > 2:
