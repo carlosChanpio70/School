@@ -1,4 +1,5 @@
 from random import randint
+def file_path(): return "2022.1\Studio\Algoritmos\Aula11\words.txt"
 
 
 def main():
@@ -16,10 +17,10 @@ def main():
 
 
 def word_get():
-    file = open("2022.1\Studio\Algoritmos\Aula11\words.txt","r")
-    word = file.readlines()
+    file = open(file_path(),"r")
+    words = file.readlines()
     file.close()
-    return word[randint(0,261796)].strip()
+    return words[randint(0,len(words)-1)].strip()
 
 
 def _play(word_in, losses, wins):
