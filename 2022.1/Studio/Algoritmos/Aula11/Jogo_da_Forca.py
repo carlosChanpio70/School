@@ -1,6 +1,9 @@
+from random import randint
+
+
 def main():
     losses = [];wins = [];game_state = False
-    word_in = input("Qual será a palavra usada? ").upper()
+    word_in = word_get().upper()
     table_print(word_in, losses, wins)
     while not game_state:
         losses, wins = _play(word_in, losses, wins)
@@ -10,6 +13,13 @@ def main():
     else:
         print("Você perdeu com a tabela:")
     table_print(word_in, losses, wins)
+
+
+def word_get():
+    file = open("2022.1\Studio\Algoritmos\Aula11\words.txt","r")
+    word = file.readlines()
+    file.close()
+    return word[randint(0,261796)].strip()
 
 
 def _play(word_in, losses, wins):
@@ -32,7 +42,7 @@ def win_check(word_in, losses, wins):
             win_n += 1
     if win_n == word_len:
         return 1
-    elif len(losses) == 4:
+    elif len(losses) > 5:
         return 2
     return False
 
@@ -45,26 +55,20 @@ def table_print(word_in, losses, wins):
         else:
             word_r += "_"
         word_r += " "
-    if len(losses) > 0: arm_left = " "
-    else:               arm_left = "\\"
-    if len(losses) > 1: arm_right = " "
-    else:
-        arm_right = "/"
-    if len(losses) > 2:
-        leg_left = " "
-    else:
-        leg_left = "/"
-    if len(losses) > 3:
-        leg_right = " "
-    else:
-        leg_right = "\\"
-    if len(losses) == 4:
-        torso = " "
-    else:
-        torso = "|"
-    table = " ____\n"
-    table += " |  |\n"
-    table += f" | {arm_left}0{arm_right}\n"
+    if len(losses) > 0: head = "0"
+    else:               head = " "
+    if len(losses) > 1: torso = "|"
+    else:               torso = " "
+    if len(losses) > 2: leg_left = "/"
+    else:               leg_left = " "
+    if len(losses) > 3: leg_right = "\\"
+    else:               leg_right = " "
+    if len(losses) > 4: arm_right = "/"
+    else:               arm_right = " "
+    if len(losses) > 5:arm_left = "\\"
+    else:               arm_left = " "
+    table = " ____\n |  |\n"
+    table += f" | {arm_left}{head}{arm_right}\n"
     table += f" |  {torso}\n"
     table += f" | {leg_left} {leg_right}  "
     table += word_r
