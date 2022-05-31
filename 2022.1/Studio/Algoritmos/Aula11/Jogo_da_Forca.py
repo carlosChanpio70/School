@@ -1,6 +1,6 @@
 from random import randint
-def file_path(): return "2022.1\Studio\Algoritmos\Aula11\words.txt"
-
+def file_path(): return "2022.1\Studio\Algoritmos\Aula11\words.txt" #Caminho do arquivo de palavras
+#Feito por Carlos Alexandre Camarino Terra
 
 def main():
     losses = [];played = [];wins = []

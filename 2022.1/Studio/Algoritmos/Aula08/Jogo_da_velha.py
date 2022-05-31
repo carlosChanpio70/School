@@ -1,20 +1,21 @@
 #Feito por Carlos Alexandre Camarino Terra e Renato da Silva Fernandes
 def main():
-    loop=1;play=[0,0,0,0,0,0,0,0,0]
-    line01 = "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n"
-    line02 = "   |   |   |\n----+---+---+"
-    print(f"                  Jogo da Velha\n{line01}")
+    loop=1
+    line = [[0,0,0,0,0,0,0,0,0]
+        ["-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n",
+        "   |   |   |\n----+---+---+"]]
+    print(f"                  Jogo da Velha\n{line[1][0]}")
     print(f"   Jogue usando coordenadas para cada ponto na tabela")
-    print(f"  1 | 2 | 3 |\n1{line02}\n2{line02}\n3{line02}")
+    print(f"  1 | 2 | 3 |\n1{line[1][1]}\n2{line[1][1]}\n3{line[1][1]}")
     while loop:
-        play = Table_play(play,1)
-        who_won,table = Table_render_winner_check(play)
+        line[0] = Table_play(line[0],1)
+        who_won,table = Table_render_winner_check(line[0])
         if who_won:
             loop=0
         else:
             print(table)
-            play = Table_play(play,2)
-            who_won,table = Table_render_winner_check(play)
+            line[0] = Table_play(line[0],2)
+            who_won,table = Table_render_winner_check(line[0])
             if who_won:
                 loop=0
             else:
@@ -22,32 +23,33 @@ def main():
     if who_won==3:
         print(f"Deu velha, ",end="")
     else:
-        print(f"\n{line01} O Jogador {who_won} venceu, ",end="")
+        print(f"\n{line[1][0]} O Jogador {who_won} venceu, ",end="")
     print(f"com a tabela:\n{table}")
 
 #Takes the current play from the player and returns the updated list
 def Table_play(line,play):
-    play = [int(input(f"Jogador {play}, o que jogará? ")),play]
-    play_list,loop = [11,12,13,21,22,23,31,32,33],0
-    if play[0] in play_list:
-        while loop<9:
-            line=Table_play_if(play,line,play_list,loop)
-            loop += 1
+#Index 0 = coords default, 1 = loop start, 2 = who is playing, 3 = what has been played
+    play = [[11,12,13,21,22,23,31,32,33],0,play,
+    int(input(f"Jogador {play}, o que jogará? "))]
+    if play[3] in play[0]:
+        while play[1]<9:
+            line=Table_play_if(line,play)
+            play[1] += 1
     else:
         return Table_play_if_invalid(play,line)
     return line
 
-def Table_play_if(play,line,play_list,line_index):
-    if play[0]==play_list[line_index]:
-        if line[line_index]==0:
-            line[line_index]=play[1]
+def Table_play_if(line,play):
+    if play[3]==play[0][play[1]]:
+        if line[play[1]]==0:
+            line[play[1]]=play[2]
         else:
             return Table_play_if_invalid(play,line)
     return line
 
 def Table_play_if_invalid(play,line):
     print("Valor inválido, digite novamente")
-    play = play[1]
+    play = play[2]
     return Table_play(line,play)
 
 #Checks if a player has won and outputs 1 or 2 if so.
@@ -55,31 +57,31 @@ def Table_play_if_invalid(play,line):
 def Table_render_winner_check(line):
     x1,x2,x3,x4,x5,x6,x7,x8,x9 = line
     if x1==x5==x9!=0:
-        x,line = Winner_check_line_change(line,x1,2,0,4,8)
+        win_r,line = Winner_check_line_change(line,x1,[2,0,4,8])
     elif x3==x5==x7!=0:
-        x,line = Winner_check_line_change(line,x3,4,2,4,6)
+        win_r,line = Winner_check_line_change(line,x3,[4,2,4,6])
     elif x1==x4==x7!=0:
-        x,line = Winner_check_line_change(line,x1,6,0,3,6)
+        win_r,line = Winner_check_line_change(line,x1,[6,0,3,6])
     elif x2==x5==x8!=0:
-        x,line = Winner_check_line_change(line,x2,6,1,4,7)
+        win_r,line = Winner_check_line_change(line,x2,[6,1,4,7])
     elif x3==x6==x9!=0:
-        x,line = Winner_check_line_change(line,x3,6,2,5,8)
+        win_r,line = Winner_check_line_change(line,x3,[6,2,5,8])
     elif x1==x2==x3!=0:
-        x,line = Winner_check_line_change(line,x1,8,0,1,2)
+        win_r,line = Winner_check_line_change(line,x1,[8,0,1,2])
     elif x4==x5==x6!=0:
-        x,line = Winner_check_line_change(line,x4,8,3,4,5)
+        win_r,line = Winner_check_line_change(line,x4,[8,3,4,5])
     elif x7==x8==x9!=0:
-        x,line = Winner_check_line_change(line,x7,8,6,7,8)
+        win_r,line = Winner_check_line_change(line,x7,[8,6,7,8])
     elif not 0 in line:
-        x=3
+        win_r=3
     else:
-        x=0
-    return x,Table_render(line)
+        win_r=0
+    return win_r,Table_render(line)
 
-def Winner_check_line_change(line,x,y,x1,x2,x3):
-    x,x0=x,x+y
-    line[x1],line[x2],line[x3]=x0,x0,x0
-    return x,line
+def Winner_check_line_change(line,win_r,x=[0,0,0,0]):
+    x0=win_r+x[0]
+    line[x[1]],line[x[2]],line[x[3]]=x0,x0,x0
+    return win_r,line
 
 #Contains string data for renderer 
 #Including checking wich one is going to be outputted
@@ -115,21 +117,23 @@ def XO_Table_render_selection(XO_select=False):
 
 #Creates the final table string.
 def Table_render(line):
-    line1 = Table_render_02(line[0:3],1)
-    line2 = Table_render_02(line[3:6],2)
-    line3 = Table_render_02(line[6:9],3)
+    line_r = [
+        Table_render_02(line[0:3],1),
+        Table_render_02(line[3:6],2),
+        Table_render_02(line[6:9],3)]
     line01 = "   1  |  2  |  3  \n"
     line02 = "\n------+-----+-----\n"
-    return f"{line01}{line1}{line02}{line2}{line02}{line3}"
+    return f"{line01}{line_r[0]}{line02}{line_r[1]}{line02}{line_r[2]}"
 
 def Table_render_02(line,x):
     n1,n2,n3 = line
-    collum_1 = XO_Table_render_selection(n1)
-    collum_2 = XO_Table_render_selection(n2)
-    collum_3 = XO_Table_render_selection(n3)
-    result  = f" {collum_1[0]}|{collum_2[0]}|{collum_3[0]}\n"
-    result += f"{x}{collum_1[1]}|{collum_2[1]}|{collum_3[1]}\n"
-    result += f" {collum_1[2]}|{collum_2[2]}|{collum_3[2]}"
+    collum = [
+        XO_Table_render_selection(n1),
+        XO_Table_render_selection(n2),
+        XO_Table_render_selection(n3)]
+    result  = f" {collum[0][0]}|{collum[1][0]}|{collum[2][0]}\n"
+    result += f"{x}{collum[0][1]}|{collum[1][1]}|{collum[2][1]}\n"
+    result += f" {collum[0][2]}|{collum[1][2]}|{collum[2][2]}"
     return result
 
 main()
