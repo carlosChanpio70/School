@@ -1,7 +1,7 @@
 #Feito por Carlos Alexandre Camarino Terra e Renato da Silva Fernandes
 def main():
     loop=1
-    line = [[0,0,0,0,0,0,0,0,0]
+    line = [[0,0,0,0,0,0,0,0,0],
         ["-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n",
         "   |   |   |\n----+---+---+"]]
     print(f"                  Jogo da Velha\n{line[1][0]}")
@@ -117,13 +117,13 @@ def XO_Table_render_selection(XO_select=False):
 
 #Creates the final table string.
 def Table_render(line):
-    line_r = [
+    line = [[
         Table_render_02(line[0:3],1),
         Table_render_02(line[3:6],2),
-        Table_render_02(line[6:9],3)]
-    line01 = "   1  |  2  |  3  \n"
-    line02 = "\n------+-----+-----\n"
-    return f"{line01}{line_r[0]}{line02}{line_r[1]}{line02}{line_r[2]}"
+        Table_render_02(line[6:9],3)],
+        "   1  |  2  |  3  \n",
+        "\n------+-----+-----\n"]
+    return f"{line[1]}{line[0][0]}{line[2]}{line[0][1]}{line[2]}{line[0][2]}"
 
 def Table_render_02(line,x):
     n1,n2,n3 = line
@@ -131,9 +131,10 @@ def Table_render_02(line,x):
         XO_Table_render_selection(n1),
         XO_Table_render_selection(n2),
         XO_Table_render_selection(n3)]
-    result  = f" {collum[0][0]}|{collum[1][0]}|{collum[2][0]}\n"
-    result += f"{x}{collum[0][1]}|{collum[1][1]}|{collum[2][1]}\n"
-    result += f" {collum[0][2]}|{collum[1][2]}|{collum[2][2]}"
+    result = \
+f" {collum[0][0]}|{collum[1][0]}|{collum[2][0]}\n\
+{x}{collum[0][1]}|{collum[1][1]}|{collum[2][1]}\n \
+{collum[0][2]}|{collum[1][2]}|{collum[2][2]}"
     return result
 
 main()
