@@ -131,10 +131,8 @@ def Table_render_02(line,x):
         XO_Table_render_selection(n1),
         XO_Table_render_selection(n2),
         XO_Table_render_selection(n3)]
-    result = \
-f" {collum[0][0]}|{collum[1][0]}|{collum[2][0]}\n\
+    return f" {collum[0][0]}|{collum[1][0]}|{collum[2][0]}\n\
 {x}{collum[0][1]}|{collum[1][1]}|{collum[2][1]}\n \
 {collum[0][2]}|{collum[1][2]}|{collum[2][2]}"
-    return result
 
 main()
