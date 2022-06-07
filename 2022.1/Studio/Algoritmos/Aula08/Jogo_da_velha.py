@@ -36,7 +36,7 @@ def Table_play(line,play):
             line=Table_play_if(line,play)
             play[1] += 1
     else:
-        return Table_play_if_invalid(play,line)
+        return Table_play_if_invalid(line,play)
     return line
 
 def Table_play_if(line,play):
@@ -44,10 +44,10 @@ def Table_play_if(line,play):
         if line[play[1]]==0:
             line[play[1]]=play[2]
         else:
-            return Table_play_if_invalid(play,line)
+            return Table_play_if_invalid(line,play)
     return line
 
-def Table_play_if_invalid(play,line):
+def Table_play_if_invalid(line,play):
     print("Valor inválido, digite novamente")
     play = play[2]
     return Table_play(line,play)
@@ -126,13 +126,13 @@ def Table_render(line):
     return f"{line[1]}{line[0][0]}{line[2]}{line[0][1]}{line[2]}{line[0][2]}"
 
 def Table_render_02(line,x):
-    n1,n2,n3 = line
     collum = [
-        XO_Table_render_selection(n1),
-        XO_Table_render_selection(n2),
-        XO_Table_render_selection(n3)]
-    return f" {collum[0][0]}|{collum[1][0]}|{collum[2][0]}\n\
-{x}{collum[0][1]}|{collum[1][1]}|{collum[2][1]}\n \
-{collum[0][2]}|{collum[1][2]}|{collum[2][2]}"
+        XO_Table_render_selection(line[0]),
+        XO_Table_render_selection(line[1]),
+        XO_Table_render_selection(line[2])]
+    return f"\
+ {collum[0][0]}|{collum[1][0]}|{collum[2][0]}\n\
+{x}{collum[0][1]}|{collum[1][1]}|{collum[2][1]}\n\
+ {collum[0][2]}|{collum[1][2]}|{collum[2][2]}"
 
 main()
