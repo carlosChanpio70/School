@@ -16,13 +16,11 @@ def main():
         print("Você perdeu com a tabela:")
     table_print(word_in, losses, wins, played)
 
-
 def word_get():
     file = open(file_path(), "r")
     words = file.readlines()
     file.close()
     return words[randint(0, len(words)-1)].strip()
-
 
 def _play(word_in, losses, wins, played):
     play = input("Digite uma letra: ").upper()
@@ -37,7 +35,6 @@ def _play(word_in, losses, wins, played):
     table_print(word_in, losses, wins, played)
     return losses, wins, played
 
-
 def win_check(word_in, losses, wins):
     win_n = 0
     word_len = len(word_in)
@@ -49,7 +46,6 @@ def win_check(word_in, losses, wins):
     elif len(losses) > 5:
         return 2
     return False
-
 
 def table_print(word_in, losses, wins, played):
     word_r = "";played_r = ""
@@ -73,6 +69,5 @@ def table_print(word_in, losses, wins, played):
     table = f"\n ____{played_r}\n |  |\n | {arm_left}{head}{arm_right}\n"
     table += f" |  {torso}\n | {leg_left} {leg_right}  {word_r}"
     print(table)
-
 
 main()
