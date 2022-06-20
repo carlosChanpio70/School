@@ -2,8 +2,7 @@
 def main():
     loop=1
     line = [[0,0,0,0,0,0,0,0,0],
-        ["-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n",
-        "   |   |   |\n----+---+---+"]]
+        ["-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n","   |   |   |\n----+---+---+"]]
     print(f"                  Jogo da Velha\n{line[1][0]}")
     print(f"   Jogue usando coordenadas para cada ponto na tabela")
     print(f"  1 | 2 | 3 |\n1{line[1][1]}\n2{line[1][1]}\n3{line[1][1]}")
@@ -29,8 +28,8 @@ def main():
 #Takes the current play from the player and returns the updated list
 def Table_play(line,play):
 #Index 0 = coords default, 1 = loop start, 2 = who is playing, 3 = what has been played
-    play = [[11,12,13,21,22,23,31,32,33],0,play,
-    int(input(f"Jogador {play}, o que jogará? "))]
+    play = [[11,12,13,21,22,23,31,32,33]
+    ,0,play,int(input(f"Jogador {play}, o que jogará? "))]
     if play[3] in play[0]:
         while play[1]<9:
             line=Table_play_if(line,play)
