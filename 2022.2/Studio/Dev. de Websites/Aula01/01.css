@@ -1,8 +1,14 @@
-*{
+* {
     background-color: grey;
+    margin: auto;
+    width: fit-content;
+    font-family: sans-serif;
+}
+
+.header h1 {
     color: black;
 }
 
-.header{
-    font-style: italic;
+.header h2 {
+    color: red;
 }
