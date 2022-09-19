@@ -1,6 +1,7 @@
 def main():
     p = Pessoa()
     p.setNome("Ahoy")
+    p.nome = "A"
     print(p.getNome())
 
 class Pessoa():
@@ -12,13 +13,13 @@ class Pessoa():
     def setNome(self, nome):
         self.nome = nome
 
-    def setcpf(self, cpf):
+    def setCpf(self, cpf):
         self.cpf = cpf
 
     def getNome(self):
-        return self.nome    
+        return self.nome
         
-    def getcpf(self):
+    def getCpf(self):
         return self.cpf
 
 class Pessoa_Física(Pessoa):
@@ -26,19 +27,28 @@ class Pessoa_Física(Pessoa):
         super().__init__(nome, cpf)
         self.cnh = cnh
 
-    def setcnh(self, cnh):
+    def setCnh(self, cnh):
         self.cnh = cnh
 
-    def getcnh(self):
+    def getCnh(self):
         return self.cnh  
 
-class Pessoa_Jurídica(Pessoa):
-    def __init__(self, nome, cpf):
-        super().__init__(nome, cpf)
+class Dependente():
+    def __init__(self, nome="", nascimento=""):
+        self.nome = nome
+        self.nascimento = nascimento
 
-class Contrato(Pessoa_Jurídica):
-    def __init__(self, nome, cpf):
+class Pessoa_Jurídica(Pessoa):
+    def __init__(self, nome, cpf, cnpj=""):
         super().__init__(nome, cpf)
+        self.cnpj = cnpj
+
+    def setCnpj(self, cnpj):
+        self.cnpj = cnpj
+
+    def getCnpj(self):
+        return self.cnpj
+
 
 if __name__ == "__main__":
     main()

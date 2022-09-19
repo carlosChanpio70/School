@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="01.css">
+    <title style="visibility: hidden;">Atividade Formulário</title>
+</head>
+<body class="header">
+    <form action="mailto:carlosalexterra@gmail.com" method="post"><fieldset class="main"><legend>Identificação do usuário</legend>
+            
+        <fieldset class="pessoais"><legend>Dados pessoais</legend>
+            <p><label for="iNome">Digite seu Nome:</label>
+                <input type="text" name="tNome" id="tNome" size="20" maxlength="20" placeholder="Nome"></p>
+            <p><label for="iSobrenome">Digite seu Sobrenome:</label>
+                <input type="text" name="tSobrenome" id="tSobrenome" size="20" maxlength="20" placeholder="Sobrenome"></p>
+            <p><label for="iSenha">Digite sua Senha:</label>
+                <input type="password" name="tSenha" id="tSenha" size="20" maxlength="8" placeholder="8 dígitos"></p>
+            <p><label for="iTele">Digite seu Telefone:</label>
+                <input type="text" name="tTele" id="tTele" size="20" maxlength="30" placeholder="Telefone"></p>
+            <p><label for="iEmail">Digite seu E-mail:</label>
+                <input type="email" name="tEmail" id="tEmail" size="20" maxlength="30" placeholder="E-mail"></p>
+            <p>Data de Nascimento: <input type="date" name="tData" id="iData"></p>
+            <fieldset><legend>Genêro:</legend>
+                <input type="radio" name="tGenero" id="tMasc" checked><label for="iMasc">Masculino</label>
+                <br>
+                <input type="radio" name="tGenero" id="tFem"><label for="iFem">Feminino</label></fieldset></fieldset>
+            
+        <fieldset class="endereco"><legend>Digite o Endereço</legend>
+            <p><label for="iRua">Rua:</label>
+                <input type="text" name="tRua" id="tRua" size="20" maxlength="20" placeholder="Rua"></p>
+            <p><label for="iNumero">número:</label>
+                <input type="text" name="tNumero" id="tNumero" size="20" maxlength="20" placeholder="Número"></p>
+            <p><label for="iBairro">Bairro:</label>
+                <input type="text" name="tBairro" id="tBairro" size="20" maxlength="20" placeholder="Bairro"></p>
+            <p><label for="iCidade">Cidade:</label>
+                <input type="text" name="tCidade" id="tCidade" size="20" maxlength="20" placeholder="Cidade"></p>
+            <p><label for="iEstado">Estado:</label>
+                <input type="text" name="tEstado" id="tEstado" size="20" maxlength="20" placeholder="Estado"></p>
+            <p><label for="iComplimento">Complimento:</label>
+                <input type="text" name="tComplimento" id="tComplimento" size="20" maxlength="20" placeholder="Complimento">
+            </p></fieldset>
+
+        <fieldset class="preferencia"><legend>Qual é a sua preferência?</legend>
+            <select name="tPref"  multiple>
+                <option value="esporte">Esportes
+                <option value="notícias">Notícias
+                <option value="jogos">Jogos
+                <option value="none">Nenhuma</select></fieldset>
+            
+        <fieldset class="curso"><legend>Qual é o seu Curso e período?</legend>
+            <p><label for="iCurso">Digite seu Curso:</label>
+                <input type="text" name="tCurso" id="tCurso" size="20" maxlength="20" placeholder="Curso"></p>
+            <p><label for="iPeriodo">Digite seu Período:</label>
+                <input type="text" name="tPeriodo" id="tPeriodo" size="20" maxlength="20" placeholder="Periodo"></p></fieldset>
+
+        <fieldset class="social">
+            <p><label for="iSocial">Digite sua rede social:</label>
+                <input type="text" name="tSocial" id="tSocial" size="20" maxlength="20"></p>
+        </fieldset>
+
+        <fieldset class="opiniao"><legend>Escreva sua opinião aqui:</legend>
+            <textarea name="tOpiniao" id="tOpiniao" cols="30" rows="10"></textarea></fieldset>
+
+        <div><button type="submit">Enviar</button></div>    
+        </fieldset>
+    </form>
+</body>
+</html>
