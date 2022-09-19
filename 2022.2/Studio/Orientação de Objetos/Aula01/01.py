@@ -1,23 +1,23 @@
 def main():
     p = Pessoa()
     p.setNome("Ahoy")
-    p.nome = "A"
+    p.__nome = "A"
     print(p.getNome())
 
 class Pessoa():
 
     def __init__(self, nome="", cpf=""):
-        self.nome = nome
+        self.__nome = nome
         self.cpf = cpf
 
     def setNome(self, nome):
-        self.nome = nome
+        self.__nome = nome
 
     def setCpf(self, cpf):
         self.cpf = cpf
 
     def getNome(self):
-        return self.nome
+        return self.__nome
         
     def getCpf(self):
         return self.cpf
