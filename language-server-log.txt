@@ -152,3 +152,9 @@
 19:29:25 stream.go:37: Sent: {"jsonrpc":"2.0","result":{"capabilities":{"textDocumentSync":{"openClose":true,"change":1,"save":{}},"completionProvider":{"triggerCharacters":[" ",":","+","-","*","/","%","=","^","\u003e","\u003c"]},"signatureHelpProvider":{},"documentFormattingProvider":true,"documentOnTypeFormattingProvider":{"firstTriggerCharacter":""},"workspace":{"workspaceFolders":{}}}},"id":0}
 19:29:25 stream.go:85: Received: {"jsonrpc":"2.0","method":"initialized","params":{}}
 19:29:25 stream.go:85: Received: {"jsonrpc":"2.0","method":"workspace/didChangeConfiguration","params":{"settings":{"yolol":{"autoopen":{"enable":true},"formatting":{"mode":"Compact"},"lengthChecking":{"mode":"Optimize"},"chipType":"Basic","debug":{"enable":true},"hotkeys":{"enable":true}},"nolol":{}}}}
+19:58:33 stream.go:85: Received: {"jsonrpc":"2.0","id":1,"method":"workspace/executeCommand","params":{"command":"activeDocument","arguments":["file:///c%3A/Users/carlo/OneDrive/Documentos/School/2022.2/Studio/Orienta%C3%A7%C3%A3o%20de%20Objetos/Aula02/main.py"]}}
+19:58:33 stream.go:37: Sent: {"jsonrpc":"2.0","result":null,"id":1}
+19:59:12 stream.go:85: Received: {"jsonrpc":"2.0","id":2,"method":"workspace/executeCommand","params":{"command":"activeDocument","arguments":["file:///c%3A/Users/carlo/OneDrive/Documentos/School/2022.2/Studio/Orienta%C3%A7%C3%A3o%20de%20Objetos/Aula01/01.py"]}}
+19:59:12 stream.go:37: Sent: {"jsonrpc":"2.0","result":null,"id":2}
+19:59:17 stream.go:85: Received: {"jsonrpc":"2.0","id":3,"method":"workspace/executeCommand","params":{"command":"activeDocument","arguments":["file:///c%3A/Users/carlo/OneDrive/Documentos/School/2022.2/Studio/Orienta%C3%A7%C3%A3o%20de%20Objetos/Aula02/main.py"]}}
+19:59:17 stream.go:37: Sent: {"jsonrpc":"2.0","result":null,"id":3}
