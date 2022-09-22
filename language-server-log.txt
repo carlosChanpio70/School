@@ -263,3 +263,4 @@
 20:30:54 stream.go:37: Sent: {"jsonrpc":"2.0","result":null,"id":53}
 20:30:55 stream.go:85: Received: {"jsonrpc":"2.0","id":54,"method":"workspace/executeCommand","params":{"command":"activeDocument","arguments":["file:///c%3A/Users/carlo/OneDrive/Documentos/School/2022.2/Studio/Orienta%C3%A7%C3%A3o%20de%20Objetos/Aula02/model/Pessoa.py"]}}
 20:30:55 stream.go:37: Sent: {"jsonrpc":"2.0","result":null,"id":54}
+20:32:22 stream.go:85: Received: {"jsonrpc":"2.0","id":55,"method":"shutdown","params":null}
