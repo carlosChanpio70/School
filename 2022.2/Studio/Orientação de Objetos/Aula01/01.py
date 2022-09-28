@@ -1,6 +1,6 @@
 def main():
     p = Pessoa()
-    p.setNome("Ahoy")
+    p.setNome(input("Digite o nome: "))
     p.__nome = "A"
     print(p.getNome())
 

@@ -1,7 +1,7 @@
 from Aluno import Aluno
 
 class Mensalidade(Aluno):
-    def __init__(self, nome="", data_nascimento="", endereço="", data="", valor="[]"):
+    def __init__(self, nome="", data_nascimento="", endereço="", data="", valor=[]):
         super().__init__(nome, data_nascimento, endereço)
         self.__data=[data]
         self.__valor=[valor]
