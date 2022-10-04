@@ -1,0 +1,37 @@
+*{
+    border-width: 5px;
+}
+
+.a01{
+    border-style: dotted;
+}
+.a02{
+    border-style: dashed;
+}
+.a03{
+    border-style: solid;
+}
+.a04{
+    border-style: double;
+}
+.a05{
+    border-style: groove;
+}
+.a06{
+    border-style: ridge;
+}
+.a07{
+    border-style: inset;
+}
+.a08{
+    border-style: outset;
+}
+.a09{
+    border-style: none;
+}
+.a10{
+    border-style: hidden;
+}
+.a11{
+    border-style: dotted dashed solid double;
+}
