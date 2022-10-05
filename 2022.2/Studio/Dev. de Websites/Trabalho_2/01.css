@@ -4,8 +4,7 @@
     font-family: sans-serif;}
 
 body {
-    size: 100%;
-    background-color: #0c9348;}
+    size: 100%;}
 
 
 
@@ -43,6 +42,13 @@ body {
         margin: 0 auto 0;
         width: fit-content;}
 
-    .page p {
+    .text01 {
         width: 50%;
-        margin: 0 auto 0;}
+        margin: 0 auto 0;
+        color: yellow;}
+
+        .text01 h1{
+            text-align: center;}
+
+        .text01 p {
+            margin: 15px auto 0;}
