@@ -34,5 +34,3 @@ def vote_loop_logic(vote):
         return 1
 
 main()
-
-variable.sub = 1
