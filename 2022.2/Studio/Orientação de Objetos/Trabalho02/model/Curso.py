@@ -30,4 +30,9 @@ class Curso():
         return self.__descricao
 
     def toString(self):
-        return f"**** Curso:  \n Disciplina: {self.getDisciplina()} \n Professor: {self.getProfessor()} \n Descrição: {self.getDescricao()}"
+        string=" Professor: ";string2="Disciplina: "
+        for i in self.__professores:
+            string += f"{i} |"
+        for i in self.__disciplinas:
+            string2 += f"{i} |"
+        return f"**** Curso:\n{string2} |{string} | Descrição: {self.getDescricao()}"

@@ -27,4 +27,7 @@ class Disciplina():
         return self.__descricao
 
     def toString(self):
-        return f"**** Disciplina:  \n Curso: {self.getCurso()} \n Turma: {self.getTurmas()} \n Descrição: {self.getDescricao()}"
+        string=" Turma: "
+        for i in self.__turmas:
+            string += f"{i} |"
+        return f"**** Disciplina:\nCurso: {self.getCurso()} |{string} Descrição: {self.getDescricao()}"

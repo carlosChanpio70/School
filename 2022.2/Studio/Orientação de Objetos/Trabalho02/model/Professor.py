@@ -3,7 +3,7 @@ from model.Curso import Curso
 
 class Professor(Pessoa):
 
-    def __init__(self, nome="", cpf=0, dataNascimento=0, email="", endereco="", telefone=0, identidade=0, matricula="", titulacao_Maxima=0):
+    def __init__(self, nome="", cpf=0, dataNascimento="", email="", endereco="", telefone=0, identidade=0, matricula="", titulacao_Maxima=0):
         super().__init__(nome, cpf, dataNascimento, email, endereco, telefone, identidade)
         self.__matricula = matricula
         self.__titulacao_Maxima = titulacao_Maxima
@@ -41,4 +41,9 @@ class Professor(Pessoa):
         return self.__titulacao_Maxima
 
     def toString(self):
-        return f"**** Professor:  \n Matricula: {self.getMatricula()} \n Turmas: {self.getTurmas()} \n Cursos: {self.getCursos()} \n Titulação Máxima: {self.getTitulacao_Maxima()}"
+        string=" Turmas: ";string2=" Cursos: "
+        for i in self.__turmas:
+            string += f"{i} |"
+        for i in self.__cursos:
+            string2 += f"{i} |"
+        return f"**** Professor:\nMatricula: {self.getMatricula()} |{string}{string2} | Titulação Máxima: {self.getTitulacao_Maxima()}"

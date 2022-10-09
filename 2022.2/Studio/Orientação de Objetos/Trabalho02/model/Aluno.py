@@ -1,9 +1,8 @@
-import string
 from model.Pessoa import Pessoa
 
 class Aluno(Pessoa):
 
-    def __init__(self, nome="", cpf=0, dataNascimento=0, email="", endereco="", telefone=0, identidade=0, matricula="", anoInicio=0, semestreInicio=0, situacao=""):
+    def __init__(self, nome="", cpf=0, dataNascimento="", email="", endereco="", telefone=0, identidade=0, matricula="", anoInicio=0, semestreInicio=0, situacao=""):
         super().__init__(nome, cpf, dataNascimento, email, endereco, telefone, identidade)
         self.__matricula = matricula
         self.__anoInicio = anoInicio
@@ -48,7 +47,9 @@ class Aluno(Pessoa):
         return self.__semestreInicio
 
     def toString(self):
-        string=""
+        string="Situações";string2="  Diários: "
+        for i in self.__situacoes:
+            string += f"{i} |"
         for i in self.__diarios:
-            string += self.__diarios[i]
-        return f"**** Aluno: \n  Matricula: {self.getMatricula()} | \n  Diários: {string} | Ano de Inicio: {self.getAno_Inicio()} | Semestre de Início: {self.getSemestre_Inicio}"
+            string2 += f"{i} |"
+        return f"**** Aluno:\nMatricula: {self.getMatricula()} | {string2} {string}  | Ano de Inicio: {self.getAno_Inicio()} | Semestre de Início: {self.getSemestre_Inicio()}"

@@ -20,4 +20,7 @@ class Instituicao():
         return self.__descricao
 
     def toString(self):
-        return f"**** Instituição:  \n Turma: {self.getTurma()} \n Descrição: {self.getDescricao()}"
+        string="Turma: "
+        for i in self.__turmas:
+            string += f"{i} |"
+        return f"**** Instituição:\n{string} Descrição: {self.getDescricao()}"

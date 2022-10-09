@@ -54,4 +54,7 @@ class Turma():
         return self.__semestre
 
     def toString(self):
-        return f"**** Turma:  \n Instituição: {self.getInstituicao()} \n Disciplina: {self.getDisciplina()} \n Professor: {self.getProfessor()} \n Ano: {self.getAno()} \n Semestre: {self.getSemestre()} \n Diário: {self.getDiarios()} \n Descrição: {self.getDescricao()}"
+        string=" Diários: "
+        for i in self.__diarios:
+            string += f"{i} |"
+        return f"**** Turma:\nInstituição: {self.getInstituicao()} | Disciplina: {self.getDisciplina()} | Professor: {self.getProfessor()} | Ano: {self.getAno()} | Semestre: {self.getSemestre()} |{string} Descrição: {self.getDescricao()}"

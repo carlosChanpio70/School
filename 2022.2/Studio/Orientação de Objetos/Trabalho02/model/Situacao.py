@@ -27,4 +27,7 @@ class Situacao():
         return self.__anoSemestre
 
     def toString(self):
-        return f"**** Situação:  \n Alunos: {self.getAlunos()} \n Ano/Semestre: {self.getanoSemestre()} \n Situação: {self.getSituacao()}"  
+        string="Alunos: "
+        for i in self.__alunos:
+            string += f"{i} |"
+        return f"**** Situação:\n{string} Ano/Semestre: {self.getanoSemestre()} | Situação: {self.getSituacao()}"  
