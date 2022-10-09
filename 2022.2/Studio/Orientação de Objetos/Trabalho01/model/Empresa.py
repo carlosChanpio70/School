@@ -1,6 +1,9 @@
+from model import Nota
+
 class Empresa():
 
-    def __init__(self, codigo=0, razao_social="", endereco="", cnpj=""):
+    def __init__(self, id="", codigo=0, razao_social="", endereco="", cnpj=""):
+        self.__id=id
         self.__codigo=codigo
         self.__razao_social=razao_social
         self.__endereco=endereco

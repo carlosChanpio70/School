@@ -1,6 +1,9 @@
-class Participante():
+from model import ItemNota
 
-    def __init__(self, codigo=0, descricao=""):
+class Produto():
+
+    def __init__(self, id="", codigo=0, descricao=""):
+        self.__id=id
         self.__codigo=codigo
         self.__descricao=descricao
 
@@ -15,3 +18,5 @@ class Participante():
 
     def getDescricao(self):
         return self.__descricao
+
+    

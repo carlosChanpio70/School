@@ -1,0 +1,22 @@
+*{
+    position: relative;}
+
+
+.container {
+    background-color: blue;
+    padding: 10px;
+    height: 200vh;}
+
+    .container div {
+        padding: 10px;}
+
+    .div_01 {
+        background-color: green;
+        position: sticky;
+        top: 0;}
+    
+    .div_02 {
+        background-color: orange;}
+    
+    .div_03 {
+        background-color: pink;}
