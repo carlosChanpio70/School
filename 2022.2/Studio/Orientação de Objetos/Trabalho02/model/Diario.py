@@ -52,4 +52,4 @@ class Diario():
         return self.__faltas
 
     def toString(self):
-        return f"**** Diario:\nv1/v2/vS/VT: {self.getv1(),self.getv2(),self.getvS(),self.getvT()} | Faltas: {self.getFaltas} | Turma: {self.__turma} | Aluno: {self.__aluno}"
+        return f"**** Diario:\nv1/v2/vS/VT: {self.getv1()},{self.getv2()},{self.getvS()},{self.getvT()} | Faltas: {self.getFaltas()} | Turma: {self.__turma} | Aluno: {self.__aluno}"

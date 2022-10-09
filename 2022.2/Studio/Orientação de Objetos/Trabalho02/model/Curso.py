@@ -35,4 +35,4 @@ class Curso():
             string += f"{i} |"
         for i in self.__disciplinas:
             string2 += f"{i} |"
-        return f"**** Curso:\n{string2} |{string} | Descrição: {self.getDescricao()}"
+        return f"**** Curso:\n{string2}{string} Descrição: {self.getDescricao()}"
