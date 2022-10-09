@@ -6,7 +6,7 @@ from model.Instituicao import Instituicao
 from model.Professor import Professor
 from model.Situacao import Situacao
 from model.Turma import Turma
-
+#Grupo 6
 
 def main():
     aluno = Aluno("Nome1", "112.111.111-33", "12/11/2022", "a@a.com", "Rua dos Bobos, número 0", 911, 56522234, 900066699, 2022, 1, "Ativo")
@@ -35,7 +35,6 @@ def main():
     print(professor.toString())
     print(situacao.toString())
     print(turma.toString())
-
 
 if __name__ == "__main__":
     main()

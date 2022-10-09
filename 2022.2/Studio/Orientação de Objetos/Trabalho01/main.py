@@ -3,6 +3,7 @@ from model.Empresa import Empresa
 from model.ItemNota import ItemNota
 from model.Nota import Nota
 from model.Participante import Participante
+#Grupo 6
 
 def main():    
     produto = Produto( 1,"Cachaça")
