@@ -1,16 +1,20 @@
-from model.ItemNota import ItemNota
 class Nota():
 
-    def __init__(self, id="", data=0, numero=0):
-        self.__id=id
-        self.__data=data
-        self.__numero=numero
+    def __init__(self, data, numero):
+        self.__data=[data]
+        self.__numero=[numero]
 
-    def setData(self, data):
-        self.__data=data
+    def addData(self, data):
+        self.__data.append(data)
 
-    def setNumero(self, numero):
-        self.__numero=numero
+    def addNumero(self, numero):
+        self.__numero.append(numero)
+
+    def removeData(self, data):
+        self.__data.remove(data)
+
+    def removeNumero(self, numero):
+        self.__numero.remove(numero)
 
     def getData(self):
         return self.__data
@@ -18,7 +22,9 @@ class Nota():
     def getNumero(self):
         return self.__numero
 
-    def getVl_total(self, id):
-        valor = 0
-        
-        valor = vl_unitario*quantidade
+    def getVl_total(self, class_id):
+        valor_total=0
+        for i in range(1,len(class_id.getQuantidade())):
+            valor = class_id.getVl_unitario()[i]*class_id.getQuantidade()[i]
+            valor_total+=valor
+        return valor_total

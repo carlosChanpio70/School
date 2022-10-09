@@ -1,7 +1,6 @@
 class ItemNota():
 
-    def __init__(self, id="", vl_unitario=[], quantidade=[]):
-        self.__id=id
+    def __init__(self, vl_unitario, quantidade):
         self.__vl_unitario=[vl_unitario]
         self.__quantidade=[quantidade]
 
@@ -22,9 +21,3 @@ class ItemNota():
 
     def getQuantidade(self):
         return self.__quantidade
-
-
-p=ItemNota(0)
-p.addVl_unitario(100)
-p.addVl_unitario(250)
-print(p.getVl_unitario)
