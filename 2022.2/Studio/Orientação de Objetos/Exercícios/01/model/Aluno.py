@@ -2,4 +2,8 @@ from model.Pessoa import Pessoa
 
 
 class Aluno(Pessoa):
-    pass
+    
+    def __init__(self, nome=""):
+        super().__init__(nome)
+
+    

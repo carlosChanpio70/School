@@ -1,5 +1,8 @@
 class Pessoa():
 
+    def __init__(self, nome=""):
+        self.__nome=nome
+
     def setNome(self, nome):
         self.__nome==nome
 

@@ -1,5 +1,13 @@
+from model.Turma import Turma
+
+
 def main():
-    pass
+    A=Turma()
+    A.addAluno("Ahoy")
+    A.addAluno("Beta")
+    print(A.listAluno())
+    A.removeAluno("Ahoy")
+    print(A.listAluno())
 
 
 
