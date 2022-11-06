@@ -1,0 +1,73 @@
+/*Nav*/
+nav {
+    background-color: darkcyan;
+    height: 4vw;
+    display: flex;
+    justify-content:flex-start;
+    gap: 5px;}
+
+    nav div {
+        width: fit-content;}
+    
+        nav div h1 {
+            font-size: x-large;}
+
+        nav div a {
+            color: black;}
+
+        nav div a:hover{
+            color: greenyellow;}
+/*End of Nav*/
+/*Main*/
+img {
+    height: 60%;
+    width: 80%;
+    background-color: grey;
+}
+
+.news {
+    display: flex;
+    height: 40vw;}
+
+.headline {
+    display: flex;
+    align-items: center;
+    height: 20vw;}
+
+.collum1 {
+    width: 50vw;}
+
+    .collum1 div {
+        text-align: center;
+        height: 25%;}
+
+    .noticia1 {
+        height: 50%!important;}
+
+        .noticia1 img {
+            height: 200px;
+            width: 200px;}
+
+        .collum1 div ol {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;}
+
+.collum2 {
+    width: 25vw;}
+
+/*End of Main*/
+.collum1 div ol li,nav,.collum2 ol li,.headline,.headline img {
+    width: 100%;}
+
+.collum2,.collum2 ol,.collum2 ol li,.collum1 div ol,nav div,.headline img {
+    height: 100%;}
+
+.collum1 div,nav div a,.collum2 {
+    border: 1px solid;}
+
+li , .collum2 ol , .noticia1 , nav div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;}
