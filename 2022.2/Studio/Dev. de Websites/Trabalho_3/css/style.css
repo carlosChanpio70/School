@@ -13,7 +13,8 @@ nav {
             font-size: x-large;}
 
         nav div a {
-            color: black;}
+            color: black;
+            border: 1px solid;}
 
         nav div a:hover{
             color: greenyellow;}
@@ -23,7 +24,7 @@ img {
     height: 60%;
     width: 80%;
     background-color: grey;
-}
+    text-align: center;}
 
 .news {
     display: flex;
@@ -54,7 +55,9 @@ img {
             justify-content: space-around;}
 
 .collum2 {
-    width: 25vw;}
+    width: 25vw;
+    border-bottom: 3px solid;
+    border-left: 1px solid;}
 
 /*End of Main*/
 .collum1 div ol li,nav,.collum2 ol li,.headline,.headline img {
@@ -63,8 +66,8 @@ img {
 .collum2,.collum2 ol,.collum2 ol li,.collum1 div ol,nav div,.headline img {
     height: 100%;}
 
-.collum1 div,nav div a,.collum2 {
-    border: 1px solid;}
+.collum1 div,nav {
+    border-bottom: 1px solid;}
 
 li , .collum2 ol , .noticia1 , nav div {
     display: flex;
