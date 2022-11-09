@@ -1,4 +1,3 @@
-from model.Turma import Turma
 from model.Curso import Curso
 
 
