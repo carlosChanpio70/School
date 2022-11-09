@@ -36,6 +36,8 @@ def main():
     print(A.listAlunoTurma("B"))
     print(A.listAluno())
 
+    print(A.getDisciplinaTurma("A"))
+    print(A.getDisciplinaTurma("B"))
 
 if __name__=="__main__":
     main()

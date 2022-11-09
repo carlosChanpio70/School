@@ -25,7 +25,7 @@ class Turma():
         self.__disciplina=Disciplina(nome)
 
     def getDisciplina(self):
-        return self.__disciplina.getNome()
+        return self.__disciplina.getNome()  # type: ignore
 
     def addAluno(self, nome):
         self.__aluno.append(Aluno(nome))
