@@ -2,7 +2,7 @@ from model.usuario import Usuario
 
 
 #Shift | Bibli0Tec
-#LARANJA | 
+#   f/LARANJA | f/LARANJA | n/BRANCO
 
 def main():
     usuario=Usuario()
