@@ -26,7 +26,7 @@ def _play(word_in, losses, wins, played):
     play = input("Digite uma letra: ").upper()
     if play in losses+wins or len(play) != 1:
         print("Valor já digitado/inválido digite novamente.")
-        return _play(word_in, losses, wins)
+        return _play(word_in, losses, wins, played)
     elif play in word_in:
         wins.append(play)
     else:
