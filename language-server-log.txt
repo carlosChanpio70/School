@@ -2950,3 +2950,6 @@
 19:47:27 stream.go:37: Sent: {"jsonrpc":"2.0","result":null,"id":28}
 19:47:29 stream.go:85: Received: {"jsonrpc":"2.0","id":29,"method":"workspace/executeCommand","params":{"command":"activeDocument","arguments":["file:///c%3A/Users/carlo/OneDrive/Personal%20Stuff/GitHub/School/2022.2/Studio/Orienta%C3%A7%C3%A3o_de_Objetos/Trabalho_Final/main.py"]}}
 19:47:29 stream.go:37: Sent: {"jsonrpc":"2.0","result":null,"id":29}
+19:48:10 stream.go:85: Received: {"jsonrpc":"2.0","id":30,"method":"workspace/executeCommand","params":{"command":"activeDocument","arguments":["file:///c%3A/Users/carlo/OneDrive/Personal%20Stuff/GitHub/School/2022.2/Studio/Orienta%C3%A7%C3%A3o_de_Objetos/Trabalho_Final/model/usuario.py"]}}
+19:48:10 stream.go:37: Sent: {"jsonrpc":"2.0","result":null,"id":30}
+20:01:51 stream.go:85: Received: {"jsonrpc":"2.0","id":31,"method":"shutdown","params":null}

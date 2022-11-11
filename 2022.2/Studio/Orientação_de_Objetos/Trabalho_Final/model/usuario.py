@@ -9,10 +9,8 @@ class Usuario():
     def writeUsuarios(self,l=[0,"",0,"",""]):
         with open(self.__filepath, 'r') as file:
             lines=file.readlines()
-
         if len(lines) > int(l[0]):
             lines[l[0]] = f"{l[0]},{l[1]},{l[2]},{l[3]},{l[4]}"
-
         with open(self.__filepath, 'w') as file:
             file.writelines(lines)
 
