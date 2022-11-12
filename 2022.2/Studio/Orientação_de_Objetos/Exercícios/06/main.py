@@ -11,8 +11,7 @@ def main():
     pessoa = Pessoa(genero, peso, altura) # Recebe as informações do input
     imc = pessoa.calcularImc() # Realiza o Cálculo do IMC
 
-    print(f"{line}") 
-    print(f"Genero: {pessoa.getGenero()} | Peso: {pessoa.getPeso():.2f}kg | Altura: {pessoa.getAltura():.2f}m")
+    print(f"{line}\nGenero: {pessoa.getGenero()} | Peso: {pessoa.getPeso():.2f}kg | Altura: {pessoa.getAltura():.2f}m")
     print(f"\nIMC: {imc:.2f}") # Mostra o resultado do IMC
     print(calculo_condição(pessoa, imc))
 
