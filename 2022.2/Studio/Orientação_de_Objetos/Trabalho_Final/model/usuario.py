@@ -1,23 +1,30 @@
-class Usuario():
+from model.file import File
 
-    def __init__(self):
-        self.__filepath=""
+class Usuario(File):
 
-    def setFilepath(self,filepath):
+    def __init__(self, filepath="2022.2/Studio/Orientação_de_Objetos/Trabalho_Final/files/usuarios.txt"):
+        super().__init__(filepath)
         self.__filepath=filepath
+        self.__logado=False
+        self.__id=0
+        self.__nome=""
+        self.__tipo=0
 
-    def writeUsuarios(self,l=[0,"",0,"",""]):
-        with open(self.__filepath, 'r') as file:
-            lines=file.readlines()
-        if len(lines) > int(l[0]):
-            lines[l[0]] = f"{l[0]},{l[1]},{l[2]},{l[3]},{l[4]}"
-        with open(self.__filepath, 'w') as file:
-            file.writelines(lines)
+    def isLogado(self):
+        return self.__logado
 
-    def readUsuarios(self,id_in):
+    def Login(self):
+        login=input("Digite o login: ")
+        senha=input("Digite a senha: ")
         with open(self.__filepath,"r") as file:
             data = list(file)
         for i in data:
             i=i.split(',')
-            if str(id_in) == i[0]:
-                return i
+            if login == i[3] and senha == i[4]:
+                self.__logado=True
+                self.__id=i[0]
+                self.__nome=i[1]
+                self.__tipo=i[2]
+                return "Logado com sucesso"
+        print("Login ou senha inválido, tente novamente.")
+        return self.Login()
