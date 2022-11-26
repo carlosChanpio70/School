@@ -11,7 +11,8 @@ class Livro(File):
             data = list(file)
         livros=[]
         for i in data:
-            i=i[:-1]
+            if "\n" in i:
+                i=i[:-1]
             i=i.split(",")
             livros.append(i[1:])
         return livros

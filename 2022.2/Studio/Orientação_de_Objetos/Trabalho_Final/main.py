@@ -7,17 +7,12 @@ from model.emprestimo import Emprestimo
 
 def main():
     usuario=Usuario()
-    livro=Livro()
-    emprestimo=Emprestimo()
-
-    print(usuario.readFile(0))
-    print(livro.readFile(0))
-    print(livro.readFile(1))
-    print(emprestimo.readFile(0))
     
     inicio()
     print(usuario.Login())
-    menu(usuario)
+    print(f"Bem vindo! {usuario.getNome()}")
+    while True:
+        menu(usuario)
 
 def menu(usuario):
     if usuario.getTipo():
@@ -30,9 +25,6 @@ def menu(usuario):
             print(sobre())
         elif command==4:
             sys.exit()
-    else:
-        pass
-    return
 
 def inicio():
     print(f"{inicio_txt()}\n                                 Empresa Shift\n")

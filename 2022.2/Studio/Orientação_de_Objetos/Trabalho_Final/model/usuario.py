@@ -21,7 +21,8 @@ class Usuario(File):
         with open(self.__filepath,"r") as file:
             data = list(file)
         for i in data:
-            i=i[:-1]
+            if "\n" in i:
+                i=i[:-1]
             i=i.split(',')
             if login == i[3] and senha == i[4]:
                 self.__logado=True
@@ -49,9 +50,14 @@ class Usuario(File):
     def view_Livros(self):
         t="*"*81
         data=Livro().readLivros()
-        for i in range(len(data)-1):
-            text=f"{t}\nLivro {i+1}: {data[i][0]}\n  Autor: {data[i][1]}"
+        text=f"{t}\nLivro {1}: {data[0][0]}\n  Autor: {data[0][1]}"
+        for i in range(1,len(data)):
+            text+=f"\n{t}\nLivro {i+1}: {data[i][0]}\n  Autor: {data[i][1]}"
+        text+=f"\n{t}"
         print(text)
+
+    def getNome(self):
+        return self.__nome
 
     def getId(self):
         return self.__id
