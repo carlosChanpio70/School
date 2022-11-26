@@ -3818,3 +3818,4 @@
 17:43:12 stream.go:37: Sent: {"jsonrpc":"2.0","result":null,"id":43}
 17:43:13 stream.go:85: Received: {"jsonrpc":"2.0","id":44,"method":"workspace/executeCommand","params":{"command":"activeDocument","arguments":["file:///c%3A/Users/carlo/OneDrive/Personal%20Stuff/GitHub/School/2022.2/Studio/Orienta%C3%A7%C3%A3o_de_Objetos/Trabalho_Final/main.py"]}}
 17:43:13 stream.go:37: Sent: {"jsonrpc":"2.0","result":null,"id":44}
+18:30:43 stream.go:85: Received: {"jsonrpc":"2.0","id":45,"method":"shutdown","params":null}
