@@ -3,15 +3,15 @@ class File():
     def __init__(self, filepath=""):
         self.__filepath=filepath
 
-    def writeFile(self,l=[]):
-        data=f"{l[0]},"
-        for i in l[1:-1]: data+=f"{i},"
-        data+=f"{l[-1]}"
+    def writeFile(self,data_in=[]):
+        data=f"{data_in[0]},"
+        for i in data_in[1:-1]: data+=f"{i},"
+        data+=f"{data_in[-1]}\n"
         with open(self.__filepath, 'r') as file:
             lines=file.readlines()
         while True:
-            if len(lines) > int(l[0]):
-                lines[l[0]] = data
+            if len(lines) > int(data_in[0]):
+                lines[data_in[0]] = data
                 break
             else:
                 lines.append("\n")
@@ -22,6 +22,7 @@ class File():
         with open(self.__filepath,"r") as file:
             data = list(file)
         for i in data:
+            i=i[:-1]
             i=i.split(",")
             if str(index) == i[0]:
                 return i

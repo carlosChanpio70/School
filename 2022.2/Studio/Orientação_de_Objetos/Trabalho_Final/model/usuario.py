@@ -1,4 +1,6 @@
 from model.file import File
+from model.emprestimo import Emprestimo
+from model.livro import Livro
 
 class Usuario(File):
 
@@ -19,6 +21,7 @@ class Usuario(File):
         with open(self.__filepath,"r") as file:
             data = list(file)
         for i in data:
+            i=i[:-1]
             i=i.split(',')
             if login == i[3] and senha == i[4]:
                 self.__logado=True
@@ -28,3 +31,30 @@ class Usuario(File):
                 return "Logado com sucesso"
         print("Login ou senha inválido, tente novamente.")
         return self.Login()
+
+    def view_Emprestimos(self):
+        t=["\n  Autor: ","\nData de Empréstimo:\n",("*"*81)]
+        data=Emprestimo().read_emprestimos(self.getId())
+        livro=Livro().readFile(data[2])
+        text=f"{t[2]}\nLivro 1: {livro[1]}{t[0]}{livro[2]}{t[1]}{data[3]}"
+        if len(data)>4:
+            livro=Livro().readFile(data[4])
+            text+=f"\n{t[2]}\nLivro 2: {livro[1]}{t[0]}{livro[2]}{t[1]}{data[5]}"
+        if len(data)==8:
+            livro=Livro().readFile(data[6])
+            text+=f"\n{t[2]}\nLivro 3: {livro[1]}{t[0]}{livro[2]}{t[1]}{data[7]}"
+        text=f"{text}\n{t[2]}"
+        print(text)
+
+    def view_Livros(self):
+        t="*"*81
+        data=Livro().readLivros()
+        for i in range(len(data)-1):
+            text=f"{t}\nLivro {i+1}: {data[i][0]}\n  Autor: {data[i][1]}"
+        print(text)
+
+    def getId(self):
+        return self.__id
+
+    def getTipo(self):
+        return self.__tipo
