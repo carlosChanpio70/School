@@ -6,7 +6,8 @@ from model.emprestimo import Emprestimo
 #Shift | Bibli0Tech
 
 def main():
-    usuario=Usuario()
+    filepath="2022.2/Studio/Orientação_de_Objetos/Trabalho_Final/files/"
+    usuario=Usuario(filepath)
     
     inicio()
     print(usuario.Login())

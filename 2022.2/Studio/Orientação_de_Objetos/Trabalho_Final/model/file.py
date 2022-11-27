@@ -3,6 +3,9 @@ class File():
     def __init__(self, filepath=""):
         self.__filepath=filepath
 
+    def setFilepath(self, filepath):
+        self.__filepath=filepath
+
     def writeFile(self,data_in=[]):
         data=f"{data_in[0]},"
         for i in data_in[1:-1]: data+=f"{i},"

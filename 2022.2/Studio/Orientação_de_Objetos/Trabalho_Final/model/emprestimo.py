@@ -2,9 +2,12 @@ from model.file import File
 
 class Emprestimo(File):
 
-    def __init__(self,filepath="2022.2/Studio/Orientação_de_Objetos/Trabalho_Final/files/emprestimos.txt"):
-        super().__init__(filepath)
-        self.__filepath=filepath
+    def __init__(self,filepath):
+        super().__init__(filepath+"emprestimos.txt")
+        self.__filepath=filepath+"emprestimos.txt"
+
+    def setFilepath(self, filepath):
+        self.__filepath=filepath+"emprestimos.txt"
 
     def read_emprestimos(self,id):
         with open(self.__filepath,"r") as file:

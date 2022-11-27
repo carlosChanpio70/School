@@ -2,9 +2,12 @@ from model.file import File
 
 class Livro(File):
 
-    def __init__(self,filepath="2022.2/Studio/Orientação_de_Objetos/Trabalho_Final/files/livros.txt"):
-        super().__init__(filepath)
-        self.__filepath=filepath
+    def __init__(self,filepath):
+        super().__init__(filepath+"livros.txt")
+        self.__filepath=filepath+"livros.txt"
+    
+    def setFilepath(self, filepath):
+        self.__filepath=filepath+"livros.txt"
 
     def readLivros(self):
         with open(self.__filepath,"r") as file:
