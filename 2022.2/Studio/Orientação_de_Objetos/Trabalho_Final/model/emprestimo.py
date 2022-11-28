@@ -13,7 +13,8 @@ class Emprestimo(File):
         with open(self.__filepath,"r") as file:
             data = list(file)
         for i in data:
-            i=i[:-1]
+            if "\n" in i:
+                i=i[:-1]
             i=i.split(",")
             if str(id) == i[1]:
                 return i
