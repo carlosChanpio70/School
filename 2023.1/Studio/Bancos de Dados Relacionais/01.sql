@@ -61,3 +61,39 @@ CREATE TABLE MENSALIDADE(
     FOREIGN KEY(ID_INSTITUICAO) REFERENCES INSTITUICAO(ID),
     FOREIGN KEY(ID_ALUNO) REFERENCES ALUNO(ID_PESSOA)
 );
+
+INSERT INTO PESSOA (
+    ID,
+    NOME,
+    DATA_NASCIMENTO,
+    CPF
+) VALUES (
+    1,
+    'Marcos Miguel',
+    '1977-08-31',
+    '03188888801'
+),
+(
+    2,
+    'Melissa Miguel',
+    '2000-08-31',
+    '64085274101'
+),
+(
+    3,
+    'José da Silva',
+    '1950-01-25',
+    '12345678901'
+),
+(
+    4,
+    'Maria da Silva',
+    '1960-01-01',
+    '12385274196'
+),
+(
+    5,
+    'Giuliano Prado',
+    '1930-01-01',
+    '04185274122'
+);
