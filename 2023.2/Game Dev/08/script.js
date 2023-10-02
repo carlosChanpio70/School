@@ -36,6 +36,7 @@ const player = {
   moveright: 1,
   moveup: 1,
   movedown: 1,
+  lastmove: 0
 };
 const target_model = {
   x: canvas.width / 2,
@@ -55,7 +56,7 @@ const bullet_model = {
   speed: 5
 };
 
-for (var i = 0; i < 25; i++) {
+for (var i = 0; i < 0; i++) {
   targets.push({
     x: -getRandom(0, target_model.speed * 2 * canvas.width),
     y: getRandom(50, 250),
@@ -139,7 +140,7 @@ function bullet_hit(bullet, target) {
 
 function shoot(bullets, source, target, direction) {
   if (keys.Space) {
-    //Create/animate bullets
+    //Create bullets
     const currentTime = Date.now();
     if (currentTime - lastShotTime >= shotDelay) {
       const newBullet = {

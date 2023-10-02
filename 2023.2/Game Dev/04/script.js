@@ -7,7 +7,7 @@ var score = 0;
 var speed = 5;
 
 var targets = {
-    for (let i = 0; i > 5; i++) {
+    for (var i = 0; i > 5; i++) {
     
     }
     i1: {x: 0,y: 0,color, hit:0},
