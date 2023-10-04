@@ -36,7 +36,7 @@ const player = {
   moveright: 1,
   moveup: 1,
   movedown: 1,
-  lastmove: 0
+  direction: 4,
 };
 const target_model = {
   x: canvas.width / 2,
@@ -53,7 +53,7 @@ const bullet_model = {
   width: 5,
   height: 20,
   color: color,
-  speed: 5
+  speed: 10,
 };
 
 for (var i = 0; i < 0; i++) {
@@ -64,7 +64,7 @@ for (var i = 0; i < 0; i++) {
     height: target_model.height,
     color: target_model.color,
     speed: getRandom(target_model.speed, target_model.speed + 5),
-    direction: target_model.direction
+    direction: target_model.direction,
   });
 }
 
@@ -85,30 +85,30 @@ function playerMovement() {
   if (keys.ArrowLeft) {
     if (player.moveleft) {
       player.x -= player.speed;
-    } else {
-      player.moveleft = 1;
+      player.direction = 2;
+      player.moveright = 1;
     }
   }
   if (keys.ArrowRight) {
     if (player.moveright) {
       player.x += player.speed;
-    } else {
-      player.moveright = 1;
+      player.direction = 1;
+      player.moveleft = 1;
     }
   }
 
   if (keys.ArrowDown) {
     if (player.movedown) {
       player.y += player.speed;
-    } else {
-      player.movedown = 1;
+      player.direction = 3;
+      player.moveup = 1;
     }
   }
   if (keys.ArrowUp) {
     if (player.moveup) {
       player.y -= player.speed;
-    } else {
-      player.moveup = 1;
+      player.direction = 4;
+      player.movedown = 1;
     }
   }
   if (player.x <= 50) {
@@ -120,7 +120,7 @@ function playerMovement() {
   if (player.y >= canvas.height - 50) {
     player.movedown = 0;
   }
-  if (player.y <= canvas.height - 100) {
+  if (player.y <= 50) {
     player.moveup = 0;
   }
 }
@@ -138,19 +138,29 @@ function bullet_hit(bullet, target) {
   }
 }
 
-function shoot(bullets, source, target, direction) {
+function shoot(bullets, source, target) {
   if (keys.Space) {
     //Create bullets
     const currentTime = Date.now();
     if (currentTime - lastShotTime >= shotDelay) {
+      var width;
+      var height;
+      if (source.direction == 1 || source.direction == 2) {
+        width = bullet_model.height;
+        height = bullet_model.width;
+      } else {
+        width = bullet_model.width;
+        height = bullet_model.height;
+      }
+
       const newBullet = {
-        x: source.x + (source.width / 2 - bullet_model.width / 2),
-        y: source.y - source.height,
-        width: bullet_model.width,
-        height: bullet_model.height,
+        x: source.x + (source.width / 2 - width / 2),
+        y: source.y + (source.height / 2 - height / 2),
+        width: width,
+        height: height,
         color: bullet_model.color,
         speed: bullet_model.speed,
-        direction: direction,
+        direction: source.direction,
       };
       bullets.push(newBullet);
       lastShotTime = currentTime; // Update the last shot time
@@ -159,7 +169,6 @@ function shoot(bullets, source, target, direction) {
 
   // Iterate over bullets in reverse order
   for (let i = bullets.length - 1; i >= 0; i--) {
-    bullets[i].y -= bullets[i].speed;
     let hitTarget = false;
 
     if (Array.isArray(target)) {
@@ -232,13 +241,12 @@ function main() {
     }
   }
 
-  bullets = shoot(bullets, player, targets, 4);
-
+  bullets = animate(shoot(bullets, player, targets));
   targets = animate(targets);
 
   context.clearRect(0, 0, canvas.width, canvas.height);
 
-  render([player, bullets, targets]);
+  render([bullets,player, targets]);//leftmost will be drawn first
 
   context.fillStyle = "black";
   context.font = "50px Serif";

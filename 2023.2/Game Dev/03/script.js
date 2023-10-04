@@ -1,3 +1,11 @@
+var keys = {
+  ArrowRight: false,
+  ArrowLeft: false,
+  ArrowDown: false,
+  ArrowUp: false,
+  Space: false,
+};
+
 function Animacao(context) {
   this.context = context;
   this.sprites = [];
@@ -16,8 +24,13 @@ Animacao.prototype = {
     this.ligado = false;
   },
   proximoFrame: function () {
+    if (keys.Space && this.ligado) {
+      this.desligar()
+    }
+
     // Posso continuar?
     if (!this.ligado) return;
+    
 
     // A cada ciclo, limpamos a tela ou desenhamos um fundo
     this.limparTela();
@@ -50,8 +63,10 @@ function Bola(context) {
   // Atributos de desenho padrão
   this.cor = "black";
   this.img = 0;
-  this.img_x = 0;
-  this.img_y = 0;
+  this.width = 0;
+  this.heigh = 0;
+  this.linha = 0;
+  this.coluna = 0;
   this.raio = 10;
 }
 
@@ -85,10 +100,10 @@ Bola.prototype = {
     } else {
       ctx.drawImage(
         this.img,
-        this.img_x,
-        this.img_y,
-        125,
-        125,
+        this.width * this.coluna,
+        this.height * this.linha,
+        this.width,
+        this.heigh,
         this.x,
         this.y,
         this.raio * 2,
@@ -142,19 +157,29 @@ b4.velocidadeY = -5;
 b4.cor = "green";
 b4.raio = 20;
 
-if (showimg){
-   b1.img = image;
-   b1.img_x = 15;
-   b1.img_y = 10;
-   b2.img = image;
-   b2.img_x = 15;
-   b2.img_y = 180;
-   b3.img = image;
-   b3.img_x = 185;
-   b3.img_y = 10;
-   b4.img = image;
-   b4.img_x = 355;
-   b4.img_y = 10;
+var width = image.width / 4;
+var heigh = image.height / 3;
+if (showimg) {
+  b1.width = width;
+  b1.heigh = heigh;
+  b2.width = width;
+  b2.heigh = heigh;
+  b3.width = width;
+  b3.heigh = heigh;
+  b4.width = width;
+  b4.heigh = heigh;
+  b1.img = image;
+  b2.img = image;
+  b3.img = image;
+  b4.img = image;
+  b1.coluna = 1;
+  b1.linha = 1;
+  b2.coluna = 1;
+  b2.linha = 1;
+  b3.coluna = 1;
+  b3.linha = 1;
+  b4.coluna = 1;
+  b4.linha = 1;
 }
 // Criando o loop de animação
 var animacao = new Animacao(context);
@@ -163,7 +188,18 @@ animacao.novoSprite(b2);
 animacao.novoSprite(b3);
 animacao.novoSprite(b4);
 
+document.addEventListener("keydown", function (evt) {
+  if (evt.code in keys) {
+    keys[evt.code] = true;
+  }
+});
+
+document.addEventListener("keyup", function (evt) {
+  if (evt.code in keys) {
+    keys[evt.code] = false;
+  }
+});
+
 image.onload = function () {
-  // "Ligar" a animação
-  animacao.ligar();
+  animacao.ligar(); // "Ligar" a animação
 };
