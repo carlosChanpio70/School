@@ -10,42 +10,76 @@ function getRandom(n0, n1) {
   return Math.floor(Math.random() * (n1 - n0)) + n0;
 }
 
-function getDistance(n0, n1) {
-  var dx = n1.x - n0.x;
-  var dy = n1.y - n0.y;
-  return (Math.sqrt(dx * dx + dy * dy));
+function getDistance(point1, point2) {
+  var dx = point2.x - point1.x;
+  var dy = point2.y - point1.y;
+  return Math.sqrt(dx * dx + dy * dy);
 }
 
 function CircleCollision(circle1, circle2) {
-  if (getDistance(circle1,circle2) < circle1.radius + circle2.radius) {
-    // Calculate the angle of collision
-    var angle = Math.atan2(dy, dx);
+  const distanceX = circle1.x - circle2.x;
+  const distanceY = circle1.y - circle2.y;
+  const distanceBetweenCenters = Math.sqrt(
+    distanceX * distanceX + distanceY * distanceY
+  );
 
-    // Calculate the new velocities using trigonometry
-    var speed1 = Math.sqrt(circle1.x_velocity^2 + circle1.y_velocity^2);
-    var speed2 = Math.sqrt(circle2.x_velocity^2 + circle2.y_velocity^2);
+  if (distanceBetweenCenters < circle1.radius + circle2.radius) {
+    const collisionAngle = Math.atan2(distanceY, distanceX);
 
-    var direction1 = Math.atan2(circle1.y_velocity, circle1.x_velocity);
-    var direction2 = Math.atan2(circle2.y_velocity, circle2.x_velocity);
+    const velocity1 = Math.hypot(circle1.x_velocity, circle1.y_velocity);
+    const velocity2 = Math.hypot(circle2.x_velocity, circle2.y_velocity);
+    const direction1 = Math.atan2(circle1.y_velocity, circle1.x_velocity);
+    const direction2 = Math.atan2(circle2.y_velocity, circle2.x_velocity);
 
-    // Swap the velocities after the collision
-    circle1.x_velocity = speed2 * Math.cos(direction2 - angle);
-    circle1.y_velocity = speed2 * Math.sin(direction2 - angle);
-    circle2.x_velocity = speed1 * Math.cos(direction1 - angle);
-    circle2.y_velocity = speed1 * Math.sin(direction1 - angle);
+    const rotatedVelX1 = velocity1 * Math.cos(direction1 - collisionAngle);
+    const rotatedVelY1 = velocity1 * Math.sin(direction1 - collisionAngle);
+    const rotatedVelX2 = velocity2 * Math.cos(direction2 - collisionAngle);
+    const rotatedVelY2 = velocity2 * Math.sin(direction2 - collisionAngle);
+
+    const finalVelocityX1 =
+      ((circle1.radius - circle2.radius) * rotatedVelX1 +
+        2 * circle2.radius * rotatedVelX2) /
+      (circle1.radius + circle2.radius);
+    const finalVelocityX2 =
+      (2 * circle1.radius * rotatedVelX1 +
+        (circle2.radius - circle1.radius) * rotatedVelX2) /
+      (circle1.radius + circle2.radius);
+
+    const cosineAngle = Math.cos(collisionAngle);
+    const sineAngle = Math.sin(collisionAngle);
+    const cosinePerpendicular = Math.cos(collisionAngle + Math.PI / 2);
+    const sinePerpendicular = Math.sin(collisionAngle + Math.PI / 2);
+
+    circle1.x_velocity =
+      cosineAngle * finalVelocityX1 + cosinePerpendicular * rotatedVelY1;
+    circle1.y_velocity =
+      sineAngle * finalVelocityX1 + sinePerpendicular * rotatedVelY1;
+    circle2.x_velocity =
+      cosineAngle * finalVelocityX2 + cosinePerpendicular * rotatedVelY2;
+    circle2.y_velocity =
+      sineAngle * finalVelocityX2 + sinePerpendicular * rotatedVelY2;
   }
   return [circle1, circle2];
 }
 
+var mousePosition = { x: 0, y: 0 };
+canvas.onmousemove = function(event) {
+    mousePosition.x = event.clientX;
+    mousePosition.y = event.clientY;
+};
+
 let circles = [];
-for (var i = 0; i < 5; i++) {
+var circles_amount = 5;
+var circle_radius = 20;
+var speed = 2.5;
+for (var i = 0; i < circles_amount; i++) {
   const circle = {
-    x: 50*i+50,
+    x: (canvas.width-circle_radius)/circles_amount*i+circle_radius,
     y: 50,
-    x_velocity: getRandom(-5, 5),
-    y_velocity: getRandom(-5, 5),
-    radius: 10,
-    color: `rgb(${i*50},0,0)`,
+    x_velocity: getRandom(-speed, speed),
+    y_velocity: getRandom(-speed, speed),
+    radius: circle_radius,
+    color: `rgb(${i * 25},0,0)`,
   };
   circles.push(circle);
 }
@@ -72,8 +106,8 @@ function animate(object) {
         object[i].y_velocity *= -1;
       }
 
-      for (var j = i+1; j < object.length; j++) {
-        var results = CircleCollision(object[i], object[j])
+      for (var j = i + 1; j < object.length; j++) {
+        var results = CircleCollision(object[i], object[j]);
         object[i] = results[0];
         object[j] = results[1];
       }
@@ -81,6 +115,7 @@ function animate(object) {
     pastTime = currentTime;
     return object;
   }
+  return object;
 }
 
 function render(object) {
@@ -104,5 +139,13 @@ function main() {
 
   requestAnimationFrame(main);
 }
+
+canvas.onclick = function(event) {
+  for (var i = 0; i < circles.length; i++) {
+    if (getDistance(mousePosition, circles[i])<circles[i].radius) {
+      circles.splice(i,1)
+    }
+  }
+};
 
 requestAnimationFrame(main);
