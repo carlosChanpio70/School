@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>melonJS - platformer example</title>
+  <link rel="stylesheet" type="text/css" media="screen" href="index.css">
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+</head>
+<body>
+  <script type="module">
+      import { device, Container } from 'https://esm.run/melonjs';
+      import onload from './js/index.js';
+
+      document.addEventListener("contextmenu", function(event) {
+        event.preventDefault();
+      });
+      device.onReady(() => {
+          onload();
+      });
+  </script>
+</body>
+</html>

@@ -16,7 +16,7 @@ def getestatistica(y=[]):
     # Calculate the statistics
     mean = sum(y) / len(y)
     mode = max(set(y), key=y.count)
-    median = sorted(y)[len(y) // 2] if len(y) % 2 == 1 else (y[len(y) // 2 - 1] + y[len(y) // 2]) / 2
+    median = sorted(y)[len(y) // 2] if len(y) % 2 == 1 else (y[len(y) // 2 - 1] + y[len(y) // 2]) / 2.0
     amplitude = max(y) - min(y)
     variance = sum((x - mean) ** 2 for x in y) / len(y)
     std_deviation = variance ** 0.5
@@ -30,8 +30,6 @@ def getestatistica(y=[]):
     print(f"E) Variância: {variance:.2f}")
     print(f"F) Desvio Padrão: {std_deviation:.2f}")
     print(f"G) Coeficiente de Variação: {coefficient_of_variation:.2f}%")
-
-import math
 
 def getProbabilidade(Total, Número, Probabilidade, tipo_evento):
     Probabilidade /= 100  # Probabilidade em %
@@ -51,6 +49,4 @@ def getProbabilidade(Total, Número, Probabilidade, tipo_evento):
     
     print(f"{resultado * 100:.4f}%")
 
-getProbabilidade(9,9,82,0)
-getProbabilidade(9,7,82,1)
-getProbabilidade(9,6,82,1)
+getestatistica([])

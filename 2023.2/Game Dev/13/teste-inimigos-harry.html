@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+   <title>Inimigos</title>
+   <script src="animacao.js"></script>
+   <script src="teclado.js"></script>
+   <script src="Harry.js"></script>
+   <script src="tiro.js"></script>
+   <script src="colisor.js"></script>
+   <script src="Inimigo.js"></script>
+</head>
+
+<body>
+   <canvas id="canvas_inimigos" width="500" height="500"></canvas>
+   <script>
+      // Imagens
+      var imgHarry = new Image();
+      imgHarry.src = 'img/harry.png';
+      imgHarry.onload = carregando;
+      
+      var imgDem = new Image();
+      imgDem.src = 'img/dem.png';
+      imgDem.onload = carregando;
+
+      // Inicialização dos objetos
+      var canvas = document.getElementById('canvas_inimigos');
+      var context = canvas.getContext('2d');
+      
+      var teclado = new Teclado(document);
+      var animacao = new Animacao(context);
+      
+      var harry = new Harry(context, teclado, imgHarry);
+      animacao.novoSprite(harry);
+      
+      var colisor = new Colisor();
+      colisor.novoSprite(harry);
+      
+      teclado.disparou(ESPACO, function() {
+         harry.atirar();
+      });
+      
+      // Carregamento e inicialização
+      var carregadas = 0;
+      
+      function carregando() {
+         carregadas++;
+         if (carregadas == 2) iniciar();
+      }
+      
+      function iniciar() {
+         harry.x = canvas.width / 2 - imgHarry.width / 2;
+         harry.y = canvas.height - imgHarry.height;
+         harry.velocidade = 5;
+         animacao.ligar();
+         
+         setInterval(novoDem, 1000);
+      }
+      
+      // Criação dos inimigos
+      function novoDem() {
+         var inimigo = new Inimigo(context, imgDem);
+
+         // Mínimo: 2; máximo: 5
+         inimigo.velocidade = 2 + Math.random() * 3;         
+         
+         // Mínimo: largura do inimigo; máximo: largura do canvas - largura do inimigo
+         inimigo.x = imgDem.width + Math.random() * (canvas.width - (imgDem.width*2) + 1);
+                  
+         // Descontar a altura
+         inimigo.y = -imgDem.height;
+         
+         animacao.novoSprite(inimigo);
+         colisor.novoSprite(inimigo);
+      }
+   </script>
+</body>
+
+</html>

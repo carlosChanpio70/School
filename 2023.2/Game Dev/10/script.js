@@ -24,6 +24,8 @@ function CircleCollision(circle1, circle2) {
   );
 
   if (distanceBetweenCenters < circle1.radius + circle2.radius) {
+    circle1.hits++;
+    circle2.hits++;
     const collisionAngle = Math.atan2(distanceY, distanceX);
 
     const velocity1 = Math.hypot(circle1.x_velocity, circle1.y_velocity);
@@ -63,23 +65,25 @@ function CircleCollision(circle1, circle2) {
 }
 
 var mousePosition = { x: 0, y: 0 };
-canvas.onmousemove = function(event) {
-    mousePosition.x = event.clientX;
-    mousePosition.y = event.clientY;
+canvas.onmousemove = function (event) {
+  mousePosition.x = event.clientX;
+  mousePosition.y = event.clientY;
 };
 
 let circles = [];
-var circles_amount = 5;
+
+var circles_amount = 10;
 var circle_radius = 20;
-var speed = 2.5;
+var speed = 5;
 for (var i = 0; i < circles_amount; i++) {
   const circle = {
-    x: (canvas.width-circle_radius)/circles_amount*i+circle_radius,
+    x: ((canvas.width - circle_radius) / circles_amount) * i + circle_radius,
     y: 50,
     x_velocity: getRandom(-speed, speed),
     y_velocity: getRandom(-speed, speed),
     radius: circle_radius,
-    color: `rgb(${i * 25},0,0)`,
+    color: "black",
+    hits: 0,
   };
   circles.push(circle);
 }
@@ -111,6 +115,12 @@ function animate(object) {
         object[i] = results[0];
         object[j] = results[1];
       }
+
+      var max_hits = 3 //max number of hits before dissapearence
+      object[i].color = `rgb(${object[i].hits * ((1 / max_hits) * 255)},0,0)`;
+      if (object[i].hits >= max_hits+1) {
+        object.splice(i,1)
+      }
     }
     pastTime = currentTime;
     return object;
@@ -140,12 +150,30 @@ function main() {
   requestAnimationFrame(main);
 }
 
-canvas.onclick = function(event) {
-  for (var i = 0; i < circles.length; i++) {
-    if (getDistance(mousePosition, circles[i])<circles[i].radius) {
-      circles.splice(i,1)
+var intervalId;
+
+canvas.onmousedown = function(event) {
+  intervalId = setInterval(function() {
+    var attraction_a = 5;
+    for (var i = 0; i < circles.length; i++) {
+      var distance = getDistance(circles[i], mousePosition);
+      if (circles[i].x >= mousePosition.x) {
+        circles[i].x_velocity -= attraction_a/Math.abs(distance);
+      } else {
+        circles[i].x_velocity += attraction_a/Math.abs(distance);
+      }
+      if (circles[i].y >= mousePosition.y) {
+        circles[i].y_velocity -= attraction_a/Math.abs(distance);
+      } else {
+        circles[i].y_velocity += attraction_a/Math.abs(distance);
+      }
     }
-  }
+  }, 10); // Modify this number to change the frequency of execution
+};
+
+
+canvas.onmouseup = function() {
+  clearInterval(intervalId);
 };
 
 requestAnimationFrame(main);
