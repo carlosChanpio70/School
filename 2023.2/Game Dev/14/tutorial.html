@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+<meta charset="UTF-8">
+<title>Tutorial Jogo de Corrida HTML5</title>
+<body>
+<div id="fb-root"></div>
+<script>(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src='https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.11';fjs.parentNode.insertBefore(js,fjs);}(document,'script','facebook-jssdk'));</script>
+<h1>Tutorial Jogo de Corrida HTML5</h1>
+<ol>
+<li>Testar o <a href=https://rodrigoschio.github.io/Jogo-Corrida-Javascript/ target=_blank style='color:#4444bb; text-decoration:none;'>jogo</a></li><br>
+<li>Gostar ou pelo menos se interessar pelo processo de criação</li><br>
+<li>Entender sobre a mecanica do jogo</li>
+basicamente é um carro que fica parado no meio da tela<br>
+a pista se move sob a imagem do carro<br>
+a imagem do carro está sempre na mesma posição no meio da tela<br>
+a imagem do carro é rotacionada conforme ação do usuário<br>
+repare que no jogo não há nenhuma imagem (é tudo desenhado por código)<br><br>
+<li>Criação do carro</li>
+nas primeiras vezes que fiz jogos de corrida como esse, usei imagens .png com fundo tranparente<br>
+uma imagem para o carro indo para um lado e outra imagem indo em outra direção, etc<br>
+ao todo 36 imagens .png do carro. Uma imagem pra cada angulo de 0 graus a 360 graus contando de 10 em 10 graus<br>
+mas nessa versão não há imagens<br>
+criei o carrinho com algumas divs com diferentes cores e bordas<br>
+a função move() atribui ao innerHTML da div carro o html/css reponsável por exibir o carro no angulo certo<br>
+uso a propriedade 'rotate' do css3<br>
+criei uma variável angulo que armazena valores de 0 a 35<br>
+quando o user pressiona a tecla esq  a variável angulo diminui 1<br>
+quando pressiona dir a variável angulo aumenta 1<br>
+daí a funcao move() desenha o carro usando a propriedade rotate e a variável angulo<br><br>
+<li>Movimento da pista</li>
+para fazer a pista desenhei um quadrado embaixo do carro<br>
+para desenhar o quadrado usei a função drawrect<br>
+num canvas<br>
+canvas é um elemento do html5<br>
+para fazer o movimento do quadrado sob o carro, fiz antes em linha reta<br>
+uma repetição de quadrados atravessando o canvas em linha reta independente do ângulo do carro<br>
+para isso criei uma variável que armazena a posição do quadrado<br>
+e usei a função <b>setTimeout</b> para de tempo em tempo modificar o valor dessa variável e (re)desenhar o quadrado na posição atualizada<br><br>
+<li>Movimento do carro na pista</li>
+depois de ter um quadrado se movendo sob o carro, fazer varios quadrados adjacentes um seguido do outro se movendo sob o carro...<br>
+a variável que armazena a posição do primeiro quadrado serve também pra desenhar o segundo quadrado.<br>
+desenha o quad1 na posx e o quad2 na posx+t e o quad3 na posx+2t. Onde t é o tamanho dos quad<br>
+dessa maneira posx armazena a posição da pista em relação ao canvas<br>
+e como o carro é fixo no canvas posx armazena a posição da pista em relação ao carro<br>
+precisamos de posx e de posy (horizontal e vertical)<br>
+conforme o jogo anda agente tem atualizado posx... mas precisamos atualizar também posy<br>
+as variaveis fatorx e fatory que criei servem para isso<br>
+se o angulo é 30 graus então px anda 3 e py anda 8<br>
+alterar px ou py faz a pista se mover<br><br>
+<li>Traçado da pista</li>
+para desenhar um quadrado da pista drawrect()<br>
+pra mover esse quad setTimeout() e uma variável px<br>
+pra enfileirar quads: drawrect() px, depois drawrect px+t, depois drawrect px+2t...<br>
+para fazer uma pista com curvas e traçado uma solução é usar <b>arrays</b><br>
+zero <b>(0)</b> representa grama, um <b>(1)</b> representa pista<br>
+<img src=https://rodrigoschio.github.io/Jogo-Corrida-Javascript/1.png style='width:90%;'><br>
+para desenhar a pista dois <b>for(...;...;...)</b> percorrendo os array.<br>
+Se é igual a <b>1</b> (pista... não grama), então<br>
+&nbsp;&nbsp;&nbsp;&nbsp;drawrect a,b,c,d<br>
+onde a é a posição do índice do <b>for1</b> * (tamanho do quadrado) + (posx)<br>
+b é a posição do indice do <b>for2</b> * (tamanho do quadrado) + posy<br><br>
+<li>Variáveis Criadas</li>
+<b>fatorx</b> e <b>fatory</b> são variáveis que definem o deslocamento do carro no eixo x e no eixo y de acordo com o ângulo.<br>
+A variável <b>pista</b> armazena o traçado da pista. '0' é grama, '1' é pista descendo, '2' é pista para direita, '3' é pista para a direita.<br>
+<b>esq</b> e <b>dir</b> são variáveis que armazenam se o carrinho está girando no sentido horário ou anti horário.<br>
+<b>px</b> e <b>py</b> armazenam a posição do carro em relação a pista.<br>
+<b>lx</b> e <b>ly</b> armazenam sobre qual 'ladrilho' o carro está.
+</ol>
+<hr><div style='text-align:right;'><a href=https://github.com/RodrigoSchio/Jogo-Corrida-Javascript target=_blank>https://github.com/RodrigoSchio/Jogo-Corrida-Javascript</a></div><hr>
+<div class="fb-comments" data-href="https://rodrigoschio.github.io/Jogo-Corrida-Javascript/tutorial.html" data-width="1000" data-numposts="50"></div>
+</body>
+</html>

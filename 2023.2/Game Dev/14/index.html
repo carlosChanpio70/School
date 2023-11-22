@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+<title>Jogo de Corrida</title>
+<body onKeyDown="vira(event.keyCode);"  onKeyUp="para(event.keyCode);" bgcolor=#e1e1e1><br>
+	<center>
+		<div id=carro></div>
+		<canvas id=canvas width=460 height=460 style='background-color:#ffffff; border:4px solid #497894; border-radius:10px;'></canvas>
+	</center>
+	<div style='width:80px; background-color:#444444; text-align:center; padding:6px 0px; position:absolute; right:10px; bottom:10px;'><a href=https://rodrigoschio.github.io/Jogo-Corrida-Javascript/tutorial.html target=_blank style='color:#ffffff; text-decoration:none;'>tutorial</a></div>
+</body>
+<script>
+ctx=document.getElementById("canvas").getContext("2d");
+fatorx=[9,8,7,6,5,4,3,2,1,0,-1,-2,-3,-4,-5,-6,-7,-8,-9,-8,-7,-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6,7,8];
+fatory=[0,-1,-2,-3,-4,-5,-6,-7,-8,-9,-8,-7,-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6,7,8,9,8,7,6,5,4,3,2,1];
+pista=[
+[2,3,3,3,3,3,3,3,3,3,3,3,3,0,0,0,2,3,3,3,3,3,0],
+[2,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,2,0,0,0,0,1,0],
+[2,0,4,4,4,4,4,4,4,4,2,0,1,0,0,0,2,0,4,4,4,1,0],
+[2,0,1,0,0,0,0,0,0,0,2,0,1,0,0,0,2,0,1,0,0,0,0],
+[2,0,1,0,2,0,1,0,0,0,2,0,1,0,0,0,2,0,1,3,3,3,3],
+[2,0,1,0,2,0,1,0,0,0,2,0,1,0,0,0,2,0,0,0,0,0,1],
+[2,0,1,0,2,0,1,0,0,0,4,4,1,0,0,0,4,4,4,4,2,0,1],
+[2,0,1,0,2,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,1],
+[2,0,1,0,2,0,1,3,3,3,3,3,3,3,3,3,3,3,3,3,3,0,1],
+[2,0,1,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+[2,0,1,0,4,4,4,4,2,0,4,4,2,0,4,4,4,4,4,4,4,4,1],
+[2,0,1,0,0,0,0,0,2,0,1,0,2,0,1,0,0,0,0,0,0,0,0],
+[2,0,1,3,3,3,3,3,3,0,1,0,2,0,1,0,0,0,0,0,0,0,0],
+[2,0,0,0,0,0,0,0,0,0,1,0,2,0,1,0,0,0,0,0,0,0,0],
+[4,4,4,4,4,4,4,4,4,4,1,0,4,4,1,0,0,0,0,0,0,0,0]
+];
+esq=false;
+dir=false;
+function vira(k){
+	if(k==37)esq=true;
+	if(k==39)dir=true;
+}
+function para(k){
+	esq=false;
+	dir=false;
+}
+function inicia(){
+	angulo=18;
+	px=-630;
+	py=-708;
+	tempo=0;
+	vira(40);
+}
+inicia();
+function move(){
+	if(esq)angulo=(angulo+35)%36;
+	if(dir)angulo=(angulo+1)%36;
+	document.getElementById('carro').innerHTML="<div style='position:relative; z-index:2; top:254px; width:20px; height:40px; background-color:#000000; border-radius:4px; transform:rotate("+angulo+"0deg);'><div style='width:10px; height:4px; background-color:#000000; border:5px solid #ff4444; border-top:none; border-bottom:none;'></div><div style='width:14px; height:20px; background-color:#999999; border:3px solid #000000;'></div></div>";
+	ctx.fillStyle="#9aba9a";
+	ctx.fillRect(0,0,460,460);
+	lx=Math.ceil(-px/200);
+	ly=Math.ceil(-py/200);
+	if(lx>=0&&ly>=0&&lx<pista.length&&ly<pista[0].length&&pista[lx][ly]!=0){
+		px+=fatorx[angulo]*3.7;
+		py+=fatory[angulo]*3.7;
+	}
+	else inicia();
+	if(lx==3&&ly==6)alert('Fim do jogo !');
+	for(x=0;x<pista.length;x++)for(y=0;y<pista[x].length;y++)if(pista[x][y]!=0){
+		ctx.fillStyle="#385383";
+		ctx.fillRect((200*y)+py+38,(200*x)+px+28,200,200);
+		ctx.fillStyle="#444444";
+		ctx.beginPath();
+		if(pista[x][y]==1){
+			ctx.moveTo((200*y)+80+py+38,(200*x)+150+px+28);
+			ctx.lineTo((200*y)+120+py+38,(200*x)+150+px+28);
+			ctx.lineTo((200*y)+120+py+38,(200*x)+100+px+28);
+			ctx.lineTo((200*y)+150+py+38,(200*x)+100+px+28);
+			ctx.lineTo((200*y)+100+py+38,(200*x)+50+px+28);
+			ctx.lineTo((200*y)+50+py+38,(200*x)+100+px+28);
+			ctx.lineTo((200*y)+80+py+38,(200*x)+100+px+28);
+			ctx.fill();
+		}
+		if(pista[x][y]==2){
+			ctx.moveTo((200*y)+80+py+38,(200*x)+50+px+28);
+			ctx.lineTo((200*y)+120+py+38,(200*x)+50+px+28);
+			ctx.lineTo((200*y)+120+py+38,(200*x)+100+px+28);
+			ctx.lineTo((200*y)+150+py+38,(200*x)+100+px+28);
+			ctx.lineTo((200*y)+100+py+38,(200*x)+150+px+28);
+			ctx.lineTo((200*y)+50+py+38,(200*x)+100+px+28);
+			ctx.lineTo((200*y)+80+py+38,(200*x)+100+px+28);
+			ctx.fill();
+		}
+		if(pista[x][y]==3){
+			ctx.moveTo((200*y)+150+py+38,(200*x)+80+px+28);
+			ctx.lineTo((200*y)+150+py+38,(200*x)+120+px+28);
+			ctx.lineTo((200*y)+100+py+38,(200*x)+120+px+28);
+			ctx.lineTo((200*y)+100+py+38,(200*x)+150+px+28);
+			ctx.lineTo((200*y)+50+py+38,(200*x)+100+px+28);
+			ctx.lineTo((200*y)+100+py+38,(200*x)+50+px+28);
+			ctx.lineTo((200*y)+100+py+38,(200*x)+80+px+28);
+		}
+		if(pista[x][y]==4){
+			ctx.moveTo((200*y)+50+py+38,(200*x)+80+px+28);
+			ctx.lineTo((200*y)+50+py+38,(200*x)+120+px+28);
+			ctx.lineTo((200*y)+100+py+38,(200*x)+120+px+28);
+			ctx.lineTo((200*y)+100+py+38,(200*x)+150+px+28);
+			ctx.lineTo((200*y)+150+py+38,(200*x)+100+px+28);
+			ctx.lineTo((200*y)+100+py+38,(200*x)+50+px+28);
+			ctx.lineTo((200*y)+100+py+38,(200*x)+080+px+28);
+		}
+		ctx.fill();
+	}
+	ctx.fillStyle="#222222";
+	for(x=0;x<pista.length;x++)for(y=0;y<pista[x].length;y++)if(pista[x][y]!=0)ctx.fillRect((4*y)+6,(4*x)+6,4,4);
+	ctx.fillStyle="#ff0000";
+	ctx.fillRect((4*ly)+6,(4*lx)+6,4,4);
+	setTimeout('move();',34+(parseInt((980-(tempo++))*.5/20)));
+}
+move();
+</script>
+</html>
