@@ -27,4 +27,12 @@ def tail_sum(a):
     return body(a, len(a)-1, 0)
 
 
-print(tail_sum([1, 2, 3]))
+def max(a):
+    def body(a, i, j):
+        if i == j:
+            return a[i]
+        mid = (i+j)//2
+        x = body(a, i, mid)
+        y = body(a, mid+1, j)
+        return x if (x > y) else y
+    return body(a, 0, len(a)-1)
