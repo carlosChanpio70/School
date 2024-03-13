@@ -8,10 +8,10 @@ import br.edu.uniacademia.TodoApi.model.Administrador;
 import br.edu.uniacademia.TodoApi.model.Etipo;
 
 @SpringBootApplication
-public class TodoApApplication implements CommandLineRunner{
+public class TodoApiApplication implements CommandLineRunner{
 
 	public static void main(String[] args) {
-		SpringApplication.run(TodoApApplication.class, args);
+		SpringApplication.run(TodoApiApplication.class, args);
 	}
 
 	@Override
