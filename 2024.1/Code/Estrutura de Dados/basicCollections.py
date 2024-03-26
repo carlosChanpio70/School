@@ -325,6 +325,5 @@ if __name__ == '__main__':
      #show([[0]*2]*4)
      #show([0]*4)
      
-
-     
-     
+head=Node(10,Node(20,Node(30,Node(40))))
+print(head)
