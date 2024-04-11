@@ -308,7 +308,7 @@ def show(matrix):
           print(s)
           return
 
-     # print matrix          
+     # print matrix
      m = len(matrix)
      n = len(matrix[0])
      for i in range(m):
