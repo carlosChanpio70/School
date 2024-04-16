@@ -29,11 +29,11 @@ def translate_receita(receita):
     return receita[0]+","+ingredientes+","+receita[2]+","+receita[3]
 
 def gravar_receita(receita):
+    decoded=0
     file=open(os.path.join(os.path.dirname(__file__),'receitas.txt'),'r')
     for line in file:
-        if line == receita[0]:
-            file.close()
-            return
+        decoded=file.readline()
+        decoded
     file=open(os.path.join(os.path.dirname(__file__),'receitas.txt'),'a')
     file.write(receita)
     pass
