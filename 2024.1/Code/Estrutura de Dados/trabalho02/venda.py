@@ -1,61 +1,66 @@
 import os,struct
 
+path = os.path.join(os.path.dirname(__file__), 'vendas.bin')
+
 def binary_to_venda(binary):
     return [struct.unpack('i',binary[:4])[0],struct.unpack('f', binary[4:8])[0], binary.decode('latin-1')[8:].strip()]
 
 def venda_to_binary(venda):
     return (struct.pack('i', venda[0]) + struct.pack('f', venda[1]) + bytes(venda[2].ljust(10), 'latin-1'))
 
-def check_if_exists(venda_in):
-    f = open(os.path.join(os.path.dirname(__file__), 'vendas.bin'), 'rb')
+def adicionar_venda(venda_in):
+    f = open(path, 'rb')
     j = 0
     for i in range(len(f.read())//18):
         f.seek(i*18)
         b = f.read(18)
         venda = binary_to_venda(b)
-        print(venda)
-        print(venda_in)
         if venda == None:
             j = i
             break
-        elif venda[0] == venda_in[0]: # se o vendedor for igual
+        elif venda[0] == venda_in[0]:
             j = None
             break
-        elif venda[2][:2] > venda_in[2][:2]: # se a data for igual
+        elif venda[2][:2] > venda_in[2][:2]:
             j = None
             break
-    f.close()
-    return j
 
-def adicionar_venda(venda):
-    j = check_if_exists(venda)
     if j is None:
         print('Ja existe')
     else:
-        f = open(os.path.join(os.path.dirname(__file__), 'vendas.bin'), 'ab')
+        f = open(path, 'ab')
         f.seek(j*18)
-        f.write(venda_to_binary(venda))
+        f.write(venda_to_binary(venda_in))
         f.close()
         print('Gravado')
 
-def ler_venda(vendedor):
-    f = open(os.path.join(os.path.dirname(__file__), 'vendas.bin'), 'rb')
+def locate_venda(venda_in,type):
+    f = open(path, 'rb')
     j = None
     for i in range(len(f.read())//18):
         f.seek(i*18)
         venda = binary_to_venda(f.read(18))
-        if venda[0] == vendedor:
-            j = i
+        if venda == None:
+            print('Nao existe')
+            j = None
             break
+        elif type == 0:
+            if venda[0] == venda_in[0]:
+                j = i
+                break
+        elif type == 1:
+            if venda[0] == venda_in[0] and venda[2][:2] == venda_in[2][:2]:
+                j = i
+                break
     f.close()
     return j
 
 def excluir_venda(vendedor):
-    j = ler_venda(vendedor)
+    j = locate_venda(vendedor,0)
     if j is None:
         print('Nao existe')
     else:
-        f = open(os.path.join(os.path.dirname(__file__), 'vendas.bin'), 'rb+')
+        f = open(path, 'rb+')
         f.seek((j+1)*18)
         rd = f.read()
         f.seek(j*18)
@@ -63,14 +68,14 @@ def excluir_venda(vendedor):
         f.close()
         print('Excluido')
 
-def alterar_venda(venda):
-    j = check_if_exists(venda)
+def alterar_venda(venda_in):
+    j = locate_venda(venda_in,1)
     if j is None:
         print('Nao existe')
     else:
-        f = open(os.path.join(os.path.dirname(__file__), 'vendas.bin'), 'rb+')
+        f = open(path, 'rb+')
         f.seek(j*18)
-        f.write(venda_to_binary(venda))
+        f.write(venda_to_binary(venda_in))
         f.close()
         print('Alterado')
 
@@ -95,9 +100,10 @@ def main():
         elif op == 3:
             excluir_venda(int(input('Codigo do vendedor: ')))
         elif op == 4:
-            input
-            alterar_venda()
-            pass
+            venda[0] = int(input('Codigo do vendedor: '))
+            venda[2] = input('Data da venda: ')
+            venda[1] = float(input('Novo valor da venda: '))
+            alterar_venda(venda)
         elif op == 5:
             pass
         elif op == 6:
