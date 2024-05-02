@@ -8,22 +8,13 @@ def binary_to_venda(binary):
 def venda_to_binary(venda):
     return (struct.pack('i', venda[0]) + struct.pack('f', venda[1]) + bytes(venda[2].ljust(10), 'latin-1'))
 
+def criar_arquivo():
+    f = open(path, 'wb')
+    f.close()
+    print('Arquivo criado')
+
 def adicionar_venda(venda_in):
-    f = open(path, 'rb')
-    j = 0
-    for i in range(len(f.read())//18):
-        f.seek(i*18)
-        b = f.read(18)
-        venda = binary_to_venda(b)
-        if venda == None:
-            j = i
-            break
-        elif venda[0] == venda_in[0]:
-            j = None
-            break
-        elif venda[2][:2] > venda_in[2][:2]:
-            j = None
-            break
+    j = locate_venda(venda_in,2)
 
     if j is None:
         print('Ja existe')
@@ -50,6 +41,10 @@ def locate_venda(venda_in,type):
                 break
         elif type == 1:
             if venda[0] == venda_in[0] and venda[2][:2] == venda_in[2][:2]:
+                j = i
+                break
+        elif type == 2:
+            if venda[0] == venda_in[0] and venda[2][:2] < venda_in[2][:2]:
                 j = i
                 break
     f.close()
@@ -79,6 +74,26 @@ def alterar_venda(venda_in):
         f.close()
         print('Alterado')
 
+def imprimir_vendas():
+    f = open(path, 'rb')
+    for i in range(len(f.read())//18):
+        f.seek(i*18)
+        venda = binary_to_venda(f.read(18))
+        print(f'Vendedor: {venda[0]} Valor: {venda[1]} Data: {venda[2]}')
+    f.close()
+
+def vendedor_com_maior_valor():
+    f = open(path, 'rb')
+    maior = 0
+    for i in range(len(f.read())//18):
+        f.seek(i*18)
+        venda = binary_to_venda(f.read(18))
+        if venda[1] > maior:
+            maior = venda[1]
+            vendedor = venda[0]
+    f.close()
+    return vendedor
+
 def main():
     venda = [None, None, None]
     while True:
@@ -91,7 +106,7 @@ def main():
         print('7 - Finalizar o programa')
         op = int(input('Escolha uma opção: '))
         if op == 1:
-            pass
+            criar_arquivo()
         elif op == 2:
             venda[0] = int(input('Codigo do vendedor: '))
             venda[1] = float(input('Valor da venda: '))
@@ -105,9 +120,9 @@ def main():
             venda[1] = float(input('Novo valor da venda: '))
             alterar_venda(venda)
         elif op == 5:
-            pass
+            imprimir_vendas()
         elif op == 6:
-            pass
+            print(f'Vendedor {vendedor_com_maior_valor()} tem o maior valor')
         elif op == 7:
             break
 
