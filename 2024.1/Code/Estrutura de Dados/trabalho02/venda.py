@@ -14,44 +14,43 @@ def criar_arquivo():
     print('Arquivo criado')
 
 def adicionar_venda(venda_in):
-    j = locate_venda(venda_in,2)
-
-    if j is None:
-        print('Ja existe')
-    else:
+    j = locate_venda(venda_in,1)
+    print(j)
+    if j is not None:
         f = open(path, 'ab')
         f.seek(j*18)
         f.write(venda_to_binary(venda_in))
         f.close()
         print('Gravado')
 
-def locate_venda(venda_in,type):
+def locate_venda(venda_in, type):
     f = open(path, 'rb')
+    content = f.read()
     j = None
-    for i in range(len(f.read())//18):
-        f.seek(i*18)
+    if len(content) == 0 and type == 1:
+        f.close()
+        return 0
+    def recursive_search(index):
+        if index * 18 >= len(content):
+            if type == 0:
+                return None
+            else:
+                return index
+        f.seek(index * 18)
         venda = binary_to_venda(f.read(18))
-        if venda == None:
-            print('Nao existe')
-            j = None
-            break
-        elif type == 0:
-            if venda[0] == venda_in[0]:
-                j = i
-                break
-        elif type == 1:
-            if venda[0] == venda_in[0] and venda[2][:2] == venda_in[2][:2]:
-                j = i
-                break
-        elif type == 2:
-            if venda[0] == venda_in[0] and venda[2][:2] < venda_in[2][:2]:
-                j = i
-                break
+        if type == 0 and venda[0] == venda_in[0]:
+            return index
+        elif type == 1 and venda[0] == venda_in[0] and venda[2] == venda_in[2]:
+            return index
+        return recursive_search(index + 1)
+    
+    j = recursive_search(0)
     f.close()
     return j
 
 def excluir_venda(vendedor):
-    j = locate_venda(vendedor,0)
+    j = locate_venda([vendedor],0)
+    print(j)
     if j is None:
         print('Nao existe')
     else:
@@ -60,6 +59,8 @@ def excluir_venda(vendedor):
         rd = f.read()
         f.seek(j*18)
         f.write(rd)
+        f.seek(-18,os.SEEK_END)
+        f.truncate()
         f.close()
         print('Excluido')
 
