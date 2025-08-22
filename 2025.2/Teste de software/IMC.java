@@ -1,26 +1,30 @@
-public class IMC(string genero,int peso,int altura){
-    if (genero == "m"){
-        list lista_imc = {20.7,26.4,27.8,31.1};
-    }else{
-        list lista_imc = {19.1,25.8,27.3,32.3};
+public class IMC {
+    public String imc(String genero, double peso, double altura) {
+        double[] lista_imc;
+        if (genero.equals("m")) {
+            lista_imc = new double[] { 20.7, 26.4, 27.8, 31.1 };
+        } else {
+            lista_imc = new double[] { 19.1, 25.8, 27.3, 32.3 };
+        }
+        double imc = peso / (altura * altura);
+        if (imc < lista_imc[0]) {
+            return "Abaixo do peso, com IMC de " + imc;
+        }
+        if (imc < lista_imc[1]) {
+            return "No peso normal, com IMC de " + imc;
+        }
+        if (imc < lista_imc[2]) {
+            return "Marginalmente acima do peso, com IMC de " + imc;
+        }
+        if (imc < lista_imc[3]) {
+            return "Acima do peso ideal, com IMC de " + imc;
+        } else {
+            return "Obeso, com IMC de " + imc;
+        }
     }
-    float imc = Math.pow(peso/altura,2);
-    if (imc<lista_imc[0]){
-        return string "Abaixo do peso, com IMC de "+imc;
-    }
-    if (imc<lista_imc[1]){
-        return string "No peso normal, com IMC de "+imc;
-    }
-    if (imc<lista_imc[2]){
-        return string "Marginalmente acima do peso, com IMC de "+imc;
-    }
-    if (imc<lista_imc[3]){
-        return string "Acima do peso ideal, com IMC de "+imc;
-    }else{
-        return string "Obeso, com IMC de "+imc;
-    }
-}
 
-public static void main(String[] args) {
-    System.out.println(IMC("m",80,180));
+    public static void main(String[] args) {
+        IMC imc = new IMC();
+        System.out.println(imc.imc("m", 70, 1.75));
+    }
 }
