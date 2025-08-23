@@ -25,6 +25,6 @@ public class IMC {
 
     public static void main(String[] args) {
         IMC imc = new IMC();
-        System.out.println(imc.imc("m", 70, 1.75));
+        System.out.println(imc.imc("m", 80, 1.80));
     }
 }
