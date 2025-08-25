@@ -1,5 +1,7 @@
+package com.example;
+
 public class IMC {
-    public String imc(String genero, double peso, double altura) {
+    public static String main(String genero, double peso, double altura) {
         double[] lista_imc;
         if (genero.equals("m")) {
             lista_imc = new double[] { 20.7, 26.4, 27.8, 31.1 };
@@ -21,10 +23,5 @@ public class IMC {
         } else {
             return "Obeso, com IMC de " + imc;
         }
-    }
-
-    public static void main(String[] args) {
-        IMC imc = new IMC();
-        System.out.println(imc.imc("m", 80, 1.80));
     }
 }
