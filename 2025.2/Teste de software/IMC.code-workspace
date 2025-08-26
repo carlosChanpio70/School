@@ -1,8 +1,10 @@
 {
-	"folders": [
-		{
-			"path": "IMC"
-		}
-	],
-	"settings": {}
+  "folders": [
+    {
+      "path": "IMC"
+    }
+  ],
+  "settings": {
+    "java.configuration.updateBuildConfiguration": "automatic"
+  }
 }
