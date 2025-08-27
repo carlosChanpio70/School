@@ -6,8 +6,12 @@ import org.junit.jupiter.api.Test;
 public class IMCtest {
     
   private void testIMC(String gender, double weight, String expectedCategory) {
-        double height = 1.0; // Height = 1m simplifies BMI to weight
-        String result = IMC.main(gender, weight, height);
+        double height = 1.0;
+        IMC imc = new IMC();
+        imc.setAltura(height);
+        imc.setGenero(gender);
+        imc.setPeso(weight);
+        String result = imc.Calculate();
         assertEquals(expectedCategory + ", com IMC de " + weight, result);
     }
 
@@ -24,10 +28,10 @@ public class IMCtest {
     @Test
     public void testFemaleBMICategories() {
         double[] lista_peso_f = {19.0, 25.7, 27.2, 32.2, 32.3};
-        testIMC("f", lista_peso_f[0], "Abaixo do peso"); // BMI < 19.1
-        testIMC("f", lista_peso_f[1], "No peso normal"); // 19.1 ≤ BMI < 25.8
-        testIMC("f", lista_peso_f[2], "Marginalmente acima do peso"); // 25.8 ≤ BMI < 27.3
-        testIMC("f", lista_peso_f[3], "Acima do peso ideal"); // 27.3 ≤ BMI < 32.3
-        testIMC("f", lista_peso_f[4], "Obeso"); // BMI ≥ 32.3
+        testIMC("f", lista_peso_f[0], "Abaixo do peso");
+        testIMC("f", lista_peso_f[1], "No peso normal");
+        testIMC("f", lista_peso_f[2], "Marginalmente acima do peso");
+        testIMC("f", lista_peso_f[3], "Acima do peso ideal");
+        testIMC("f", lista_peso_f[4], "Obeso");
     }
 }
