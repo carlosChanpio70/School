@@ -5,10 +5,11 @@ public final class IMC {
     private Calculo calculo;
     private double peso;
     private double altura;
-    private double imc;
-    private double[] lista_imc;
+    private double imcvalor;
+    private double[] imclista;
 
     public IMC(String genero, double peso, double altura) {
+        setGenero(genero);
         this.calculo = new Calculo(peso,altura);
         setIMC();
     }
@@ -26,7 +27,7 @@ public final class IMC {
     }
 
     public double getIMC() {
-        return imc;
+        return imcvalor;
     }
 
     public Calculo getCalculo() {
@@ -35,7 +36,7 @@ public final class IMC {
 
     public void setGenero(String genero) {
         Genero generoclass = new Genero(genero);
-        this.lista_imc = generoclass.getLista_imc();
+        this.imclista = generoclass.getLista_imc();
     }
 
     public void setPeso(double peso) {
@@ -47,7 +48,7 @@ public final class IMC {
     }
 
     public void setIMC() {
-        this.imc = this.calculo.getCalculo();
+        this.imcvalor = this.calculo.getCalculo();
     }
 
     public void setCalculo() {
@@ -57,13 +58,13 @@ public final class IMC {
     public String getResults() {
         setIMC();
         String results;
-        if (this.imc < this.lista_imc[0]) {
+        if (this.imcvalor < this.imclista[0]) {
             results = "Abaixo do peso";
-        } else if (this.imc < this.lista_imc[1]) {
+        } else if (this.imcvalor < this.imclista[1]) {
             results = "No peso normal";
-        } else if (this.imc < this.lista_imc[2]) {
+        } else if (this.imcvalor < this.imclista[2]) {
             results = "Marginalmente acima do peso";
-        } else if (this.imc < this.lista_imc[3]) {
+        } else if (this.imcvalor < this.imclista[3]) {
             results = "Acima do peso ideal";
         } else {
             results = "Obeso";
