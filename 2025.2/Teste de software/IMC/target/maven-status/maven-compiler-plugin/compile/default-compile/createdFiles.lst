@@ -1,6 +1,13 @@
-com\example\Genero.class
 com\example\Calculo.class
+com\example\HistoricoCalculos.class
 com\example\ImcApplication.class
-com\example\IMC.class
 com\example\controller\ImcController.class
 com\example\controller\ImcResponse.class
+com\example\controller\ValidationResponse.class
+com\example\Pessoa.class
+com\example\Genero.class
+com\example\IMC.class
+com\example\HistoricoCalculos$RegistroCalculo.class
+com\example\ClassificacaoIMC.class
+com\example\ValidadorDados.class
+com\example\controller\ClassificacaoResponse.class
