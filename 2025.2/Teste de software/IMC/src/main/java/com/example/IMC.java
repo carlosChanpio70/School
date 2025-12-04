@@ -2,73 +2,71 @@ package com.example;
 
 public final class IMC {
 
-    private String genero;
+    private Calculo calculo;
     private double peso;
     private double altura;
-    private double[] lista_imc = new double[4];
+    private double imc;
+    private double[] lista_imc;
 
     public IMC(String genero, double peso, double altura) {
-        setGenero(genero);
-        setPeso(peso);
-        setAltura(altura);
+        this.calculo = new Calculo(peso,altura);
+        setIMC();
     }
 
-    public String getGenero() {
-        return genero;
-    }
-
-    public void setGenero(String genero) {
-        genero = genero.toUpperCase().trim();
-        switch (genero) {
-            case "M":
-                this.lista_imc = new double[]{20.7, 26.4, 27.8, 31.1};
-                break;
-            case "F":
-                this.lista_imc = new double[]{19.1, 25.8, 27.3, 32.3};
-                break;
-            default:
-                throw new IllegalArgumentException("Genero inválido");
-        }
-        this.genero = genero;
+    public IMC(){
+        this.calculo = new Calculo();
     }
 
     public double getPeso() {
         return peso;
     }
 
-    public void setPeso(double peso) {
-        if (peso > 0) {
-            this.peso = peso;
-        } else {
-            throw new IllegalArgumentException("Peso inválido");
-        }
-    }
-
     public double getAltura() {
         return altura;
     }
 
-    public void setAltura(double altura) {
-        if (altura > 0) {
-            this.altura = altura;
-        } else {
-            throw new IllegalArgumentException("Altura inválida");
-        }
+    public double getIMC() {
+        return imc;
     }
 
-    public String calculate() {
-        double imc = this.peso / (this.altura * this.altura);
+    public Calculo getCalculo() {
+        return calculo;
+    }
+
+    public void setGenero(String genero) {
+        Genero generoclass = new Genero(genero);
+        this.lista_imc = generoclass.getLista_imc();
+    }
+
+    public void setPeso(double peso) {
+        this.calculo.setPeso(peso);
+    }
+
+    public void setAltura(double altura) {
+        this.calculo.setAltura(altura);
+    }
+
+    public void setIMC() {
+        this.imc = this.calculo.getCalculo();
+    }
+
+    public void setCalculo() {
+        this.calculo = new Calculo(peso, altura);
+    }
+
+    public String getResults() {
+        setIMC();
         String results;
-        if (imc < this.lista_imc[0]) {
-            results = String.format("Abaixo do peso, com IMC de %.2f", imc);
-        } else if (imc < this.lista_imc[1]) {
-            results = String.format("No peso normal, com IMC de %.2f", imc);
-        } else if (imc < this.lista_imc[2]) {
-            results = String.format("Marginalmente acima do peso, com IMC de %.2f", imc);
-        } else if (imc < this.lista_imc[3]) {
-            results = String.format("Acima do peso ideal, com IMC de %.2f", imc);
+        if (this.imc < this.lista_imc[0]) {
+            results = "Abaixo do peso";
+        } else if (this.imc < this.lista_imc[1]) {
+            results = "No peso normal";
+        } else if (this.imc < this.lista_imc[2]) {
+            results = "Marginalmente acima do peso";
+        } else if (this.imc < this.lista_imc[3]) {
+            results = "Acima do peso ideal";
         } else {
-            results = String.format("Obeso, com IMC de %.2f", imc);
+            results = "Obeso";
         }
         return results;
     }
