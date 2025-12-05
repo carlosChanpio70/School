@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="maven-antrun-" default="main">
+  <target name="main">
+    <echo message="Downloading ckjm_ext.jar from https://github.com/mauricioaniche/ckjm_ext/releases/download/2.8/ckjm_ext.jar (if missing)" />
+    <get usetimestamp="true" skipexisting="true" src="https://github.com/mauricioaniche/ckjm_ext/releases/download/2.8/ckjm_ext.jar" dest="e:\Github\School\2025.2\Teste de software\IMC/ckjm_ext.jar" />
+  </target>
+</project>

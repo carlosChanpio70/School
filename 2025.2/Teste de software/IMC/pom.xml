@@ -19,6 +19,8 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>17</maven.compiler.release>
+        <!-- URL to download ckjm_ext.jar if not present; update if required -->
+        <ckjm.url>https://github.com/mauricioaniche/ckjm_ext/releases/download/2.8/ckjm_ext.jar</ckjm.url>
     </properties>
 
     <dependencies>
@@ -72,6 +74,66 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.1.2</version>
+            </plugin>
+
+            <!-- Generate class list with a small helper class, then run ckjm_ext.jar -->
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>download-ckjm</id>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <echo message="Downloading ckjm_ext.jar from ${ckjm.url} (if missing)"/>
+                                <get src="${ckjm.url}" dest="${project.basedir}/ckjm_ext.jar" usetimestamp="true" skipexisting="true"/>
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>generate-classlist</id>
+                        <phase>process-test-classes</phase>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>com.example.util.BuildHelper</mainClass>
+                            <arguments>
+                                <argument>${project.build.outputDirectory}</argument>
+                                   <argument>gr.spinellis.ckjm.MetricsFilter</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>run-ckjm-ext</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>cmd</executable>
+                            <workingDirectory>${project.basedir}</workingDirectory>
+                            <arguments>
+                                <argument>/c</argument>
+                                <argument>java -cp "${project.basedir}/ckjm_ext.jar${path.separator}${project.build.outputDirectory}" gr.spinellis.ckjm.MetricsFilter &lt; classlist.txt &gt; metricas_ck_completas.txt</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
 
             <!-- JACOCO - COBERTURA 100% -->

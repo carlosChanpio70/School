@@ -1,0 +1,130 @@
+Please enter fully qualified names of the java classes to analyse.
+Each class should be entered in separate line.
+After the last class press enter to continue.
+com.example.ImcApplication 2 1 0 2 4 1 0 2 2 2.0000 10 0.0000 0 0.0000 0.5000 0 0 4.0000
+ ~ public static void main(String[] args): 1
+ ~ public void <init>(): 1
+
+com.example.ValidadorDados 9 1 0 1 17 36 1 0 8 2.0000 132 0.0000 0 0.0000 0.3333 0 0 13.6667
+ ~ public static boolean validarIdade(int idade): 3
+ ~ public static boolean validarIMC(double imc): 3
+ ~ public static double limitarCasasDecimais(double valor, int casas): 2
+ ~ public static boolean validarPeso(double peso): 3
+ ~ public static String validarPessoa(String nome, int idade, String genero, double peso, double altura): 6
+ ~ public static boolean validarAltura(double altura): 3
+ ~ private void <init>(): 1
+ ~ public static boolean validarGenero(String genero): 4
+ ~ public static boolean validarNome(String nome): 4
+
+com.example.controller.ValidationResponse 5 1 0 1 6 0 1 0 5 0.5000 30 1.0000 0 0.0000 0.6000 0 0 4.6000
+ ~ public void <init>(boolean success, String message): 1
+ ~ public void setSuccess(boolean success): 1
+ ~ public boolean isSuccess(): 1
+ ~ public void setMessage(String message): 1
+ ~ public String getMessage(): 1
+
+com.example.util.BuildHelper 5 1 0 3 26 10 0 3 2 2.0000 85 0.0000 0 0.0000 0.2500 0 0 16.0000
+ ~ public static void main(String[] args): 3
+ ~ private static synthetic boolean lambda$2(String s): 2
+ ~ private static synthetic String lambda$1(java.nio.file.Path p): 1
+ ~ public void <init>(): 1
+ ~ private static synthetic boolean lambda$0(java.nio.file.Path p): 1
+
+com.example.Pessoa 16 1 0 3 24 70 1 2 16 0.7889 171 1.0000 1 0.0000 0.3125 0 0 9.3125
+ ~ public String getGenero(): 1
+ ~ public com.example.IMC getImc(): 1
+ ~ public void setIdade(int idade): 3
+ ~ public void setImc(com.example.IMC imc): 1
+ ~ public double calcularIMC(): 1
+ ~ public String getNome(): 1
+ ~ public String toString(): 1
+ ~ public int getIdade(): 1
+ ~ public void setAltura(double altura): 2
+ ~ public void setGenero(String genero): 4
+ ~ public double getPeso(): 1
+ ~ public void <init>(String nome, int idade, String genero, double peso, double altura): 1
+ ~ public void setPeso(double peso): 2
+ ~ public void <init>(): 1
+ ~ public void setNome(String nome): 3
+ ~ public double getAltura(): 1
+
+com.example.ClassificacaoIMC 10 1 0 3 15 17 2 1 10 0.5926 103 1.0000 0 0.0000 0.5333 0 0 9.0000
+ ~ public double getImcMinimo(): 1
+ ~ public double getImcMaximo(): 1
+ ~ public String toString(): 1
+ ~ public void setImcMaximo(double imcMaximo): 2
+ ~ public void <init>(String classificacao, double imcMinimo, double imcMaximo): 1
+ ~ public void setClassificacao(String classificacao): 3
+ ~ public String getClassificacao(): 1
+ ~ public void <init>(): 1
+ ~ public void setImcMinimo(double imcMinimo): 2
+ ~ public boolean estaNoIntervalo(double imc): 3
+
+com.example.controller.ImcController 6 1 0 8 22 15 0 8 5 1.2000 308 1.0000 0 0.0000 0.5417 0 0 49.5000
+ ~ public String index(): 1
+ ~ public com.example.controller.ImcResponse calcularImc(String genero, double peso, double altura): 4
+ ~ public com.example.controller.ClassificacaoResponse obterClassificacoes(): 1
+ ~ public void <init>(): 1
+ ~ public com.example.controller.ValidationResponse validarPessoa(String nome, int idade, String genero, double peso, double altura): 2
+ ~ private String classificarIMC(String genero, double imc): 7
+
+com.example.Calculo 6 1 0 1 8 9 1 0 6 0.6000 86 1.0000 0 0.0000 0.7500 0 0 12.8333
+ ~ public void <init>(double peso, double altura): 1
+ ~ public void setAltura(double altura): 2
+ ~ public void setCalculo(): 3
+ ~ public double getCalculo(): 1
+ ~ public void setPeso(double peso): 2
+ ~ public void <init>(): 1
+
+com.example.IMC 12 1 0 4 20 12 2 2 12 0.7455 138 1.0000 1 0.0000 0.4722 0 0 10.0833
+ ~ public double getIMC(): 1
+ ~ public void setAltura(double altura): 1
+ ~ public void <init>(String genero, double peso, double altura): 1
+ ~ public double getPeso(): 1
+ ~ public void setGenero(String genero): 1
+ ~ public void setIMC(): 1
+ ~ public void setCalculo(): 1
+ ~ public com.example.Calculo getCalculo(): 1
+ ~ public void setPeso(double peso): 1
+ ~ public void <init>(): 1
+ ~ public double getAltura(): 1
+ ~ public String getResults(): 5
+
+com.example.Genero 5 1 0 1 11 2 1 0 5 0.3750 91 1.0000 0 0.0000 0.7000 0 0 16.8000
+ ~ public String getGenero(): 1
+ ~ public void <init>(String genero): 1
+ ~ public void setLista_IMC(): 6
+ ~ public void setGenero(String genero): 1
+ ~ public double[] getLista_imc(): 1
+
+com.example.HistoricoCalculos 11 1 0 2 28 0 0 2 11 0.4500 134 1.0000 0 0.0000 0.4545 0 0 11.0000
+ ~ public String getIdPessoa(): 1
+ ~ public String toString(): 1
+ ~ public double getImcMedio(): 3
+ ~ public com.example.HistoricoCalculos$RegistroCalculo getUltimoCalculo(): 2
+ ~ public int getTotalCalculos(): 1
+ ~ public void <init>(String idPessoa): 1
+ ~ public java.util.List getRegistros(): 1
+ ~ public void limparHistorico(): 1
+ ~ public void <init>(): 1
+ ~ public void adicionarRegistro(double peso, double altura, double imc, String classificacao): 1
+ ~ public void setIdPessoa(String idPessoa): 3
+
+com.example.controller.ClassificacaoResponse 5 1 0 2 6 0 1 1 5 0.5000 30 1.0000 2 0.0000 0.8000 0 0 4.6000
+ ~ public void setFeminino(com.example.ClassificacaoIMC[] feminino): 1
+ ~ public com.example.ClassificacaoIMC[] getMasculino(): 1
+ ~ public com.example.ClassificacaoIMC[] getFeminino(): 1
+ ~ public void <init>(com.example.ClassificacaoIMC[] masculino, com.example.ClassificacaoIMC[] feminino): 1
+ ~ public void setMasculino(com.example.ClassificacaoIMC[] masculino): 1
+
+com.example.controller.ImcResponse 9 1 0 1 10 12 1 0 9 0.7500 56 1.0000 0 0.0000 0.4444 0 0 4.7778
+ ~ public String getClassification(): 1
+ ~ public void setClassification(String classification): 1
+ ~ public String getError(): 1
+ ~ public void <init>(boolean success, double imc, String classification, String error): 1
+ ~ public void setSuccess(boolean success): 1
+ ~ public boolean isSuccess(): 1
+ ~ public void setError(String error): 1
+ ~ public double getImc(): 1
+ ~ public void setImc(double imc): 1
+
