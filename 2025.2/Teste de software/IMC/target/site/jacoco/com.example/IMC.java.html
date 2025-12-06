@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>IMC.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">IMC</a> &gt; <a href="index.source.html" class="el_package">com.example</a> &gt; <span class="el_source">IMC.java</span></div><h1>IMC.java</h1><pre class="source lang-java linenums">package com.example;
+
+public final class IMC {
+
+  private Calculo calculo;
+  private double peso;
+  private double altura;
+  private double imcvalor;
+  private double[] imclista;
+
+<span class="nc" id="L11">  public IMC(String genero, double peso, double altura) {</span>
+<span class="nc" id="L12">    setGenero(genero);</span>
+<span class="nc" id="L13">    this.calculo = new Calculo(peso, altura);</span>
+<span class="nc" id="L14">    setIMC();</span>
+<span class="nc" id="L15">  }</span>
+
+<span class="nc" id="L17">  public IMC() { this.calculo = new Calculo(); }</span>
+
+<span class="nc" id="L19">  public double getPeso() { return peso; }</span>
+
+<span class="nc" id="L21">  public double getAltura() { return altura; }</span>
+
+<span class="nc" id="L23">  public double getIMC() { return imcvalor; }</span>
+
+<span class="nc" id="L25">  public Calculo getCalculo() { return calculo; }</span>
+
+  public void setGenero(String genero) {
+<span class="nc" id="L28">    Genero generoclass = new Genero(genero);</span>
+<span class="nc" id="L29">    this.imclista = generoclass.getIMCLista();</span>
+<span class="nc" id="L30">  }</span>
+
+<span class="nc" id="L32">  public void setPeso(double peso) { this.calculo.setPeso(peso); }</span>
+
+<span class="nc" id="L34">  public void setAltura(double altura) { this.calculo.setAltura(altura); }</span>
+
+<span class="nc" id="L36">  public void setIMC() { this.imcvalor = this.calculo.getCalculo(); }</span>
+
+<span class="nc" id="L38">  public void setCalculo() { this.calculo = new Calculo(peso, altura); }</span>
+
+  public String getResults() {
+<span class="nc" id="L41">    setIMC();</span>
+    String results;
+<span class="nc bnc" id="L43" title="All 2 branches missed.">    if (this.imcvalor &lt; this.imclista[0]) {</span>
+<span class="nc" id="L44">      results = &quot;Abaixo do peso&quot;;</span>
+<span class="nc bnc" id="L45" title="All 2 branches missed.">    } else if (this.imcvalor &lt; this.imclista[1]) {</span>
+<span class="nc" id="L46">      results = &quot;No peso normal&quot;;</span>
+<span class="nc bnc" id="L47" title="All 2 branches missed.">    } else if (this.imcvalor &lt; this.imclista[2]) {</span>
+<span class="nc" id="L48">      results = &quot;Marginalmente acima do peso&quot;;</span>
+<span class="nc bnc" id="L49" title="All 2 branches missed.">    } else if (this.imcvalor &lt; this.imclista[3]) {</span>
+<span class="nc" id="L50">      results = &quot;Acima do peso ideal&quot;;</span>
+    } else {
+<span class="nc" id="L52">      results = &quot;Obeso&quot;;</span>
+    }
+<span class="nc" id="L54">    return results;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

@@ -11,3 +11,4 @@ com\example\HistoricoCalculos$RegistroCalculo.class
 com\example\ClassificacaoIMC.class
 com\example\ValidadorDados.class
 com\example\controller\ClassificacaoResponse.class
+com\example\util\BuildHelper.class

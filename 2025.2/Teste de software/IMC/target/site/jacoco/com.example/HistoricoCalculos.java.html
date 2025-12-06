@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>HistoricoCalculos.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">IMC</a> &gt; <a href="index.source.html" class="el_package">com.example</a> &gt; <span class="el_source">HistoricoCalculos.java</span></div><h1>HistoricoCalculos.java</h1><pre class="source lang-java linenums">package com.example;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+public final class HistoricoCalculos {
+  private String idPessoa;
+  private final List&lt;RegistroCalculo&gt; registros;
+
+<span class="nc" id="L11">  public HistoricoCalculos(String idPessoa) {</span>
+<span class="nc" id="L12">    setIdPessoa(idPessoa);</span>
+<span class="nc" id="L13">    this.registros = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L14">  }</span>
+
+<span class="nc" id="L16">  public HistoricoCalculos() { this.registros = new ArrayList&lt;&gt;(); }</span>
+
+<span class="nc" id="L18">  public String getIdPessoa() { return idPessoa; }</span>
+
+  public void setIdPessoa(String idPessoa) {
+<span class="nc bnc" id="L21" title="All 4 branches missed.">    if (idPessoa != null &amp;&amp; !idPessoa.trim().isEmpty()) {</span>
+<span class="nc" id="L22">      this.idPessoa = idPessoa;</span>
+    } else {
+<span class="nc" id="L24">      throw new IllegalArgumentException(&quot;ID da pessoa não pode ser vazio&quot;);</span>
+    }
+<span class="nc" id="L26">  }</span>
+
+  public List&lt;RegistroCalculo&gt; getRegistros() {
+<span class="nc" id="L29">    return new ArrayList&lt;&gt;(registros);</span>
+  }
+
+  public void adicionarRegistro(double peso, double altura, double imc,
+                                String classificacao) {
+<span class="nc" id="L34">    RegistroCalculo registro =</span>
+        new RegistroCalculo(peso, altura, imc, classificacao);
+<span class="nc" id="L36">    registros.add(registro);</span>
+<span class="nc" id="L37">  }</span>
+
+<span class="nc" id="L39">  public int getTotalCalculos() { return registros.size(); }</span>
+
+  public RegistroCalculo getUltimoCalculo() {
+<span class="nc bnc" id="L42" title="All 2 branches missed.">    if (registros.isEmpty()) {</span>
+<span class="nc" id="L43">      return null;</span>
+    }
+<span class="nc" id="L45">    return registros.get(registros.size() - 1);</span>
+  }
+
+  public double getImcMedio() {
+<span class="nc bnc" id="L49" title="All 2 branches missed.">    if (registros.isEmpty()) {</span>
+<span class="nc" id="L50">      return 0;</span>
+    }
+<span class="nc" id="L52">    double soma = 0;</span>
+<span class="nc bnc" id="L53" title="All 2 branches missed.">    for (RegistroCalculo registro : registros) {</span>
+<span class="nc" id="L54">      soma += registro.getImc();</span>
+<span class="nc" id="L55">    }</span>
+<span class="nc" id="L56">    return soma / registros.size();</span>
+  }
+
+<span class="nc" id="L59">  public void limparHistorico() { registros.clear(); }</span>
+
+  @Override
+  public String toString() {
+<span class="nc" id="L63">    return &quot;HistoricoCalculos{&quot;</span>
+        + &quot;idPessoa='&quot; + idPessoa + '\'' +
+<span class="nc" id="L65">        &quot;, totalRegistros=&quot; + registros.size() + '}';</span>
+  }
+
+  // Classe interna para representar um registro de cálculo
+  public static final class RegistroCalculo {
+    private final double peso;
+    private final double altura;
+    private final double imc;
+    private final String classificacao;
+    private final LocalDateTime dataHora;
+
+    public RegistroCalculo(double peso, double altura, double imc,
+<span class="nc" id="L77">                           String classificacao) {</span>
+<span class="nc" id="L78">      this.peso = peso;</span>
+<span class="nc" id="L79">      this.altura = altura;</span>
+<span class="nc" id="L80">      this.imc = imc;</span>
+<span class="nc" id="L81">      this.classificacao = classificacao;</span>
+<span class="nc" id="L82">      this.dataHora = LocalDateTime.now();</span>
+<span class="nc" id="L83">    }</span>
+
+<span class="nc" id="L85">    public double getPeso() { return peso; }</span>
+
+<span class="nc" id="L87">    public double getAltura() { return altura; }</span>
+
+<span class="nc" id="L89">    public double getImc() { return imc; }</span>
+
+<span class="nc" id="L91">    public String getClassificacao() { return classificacao; }</span>
+
+<span class="nc" id="L93">    public LocalDateTime getDataHora() { return dataHora; }</span>
+
+    @Override
+    public String toString() {
+<span class="nc" id="L97">      return &quot;RegistroCalculo{&quot;</span>
+          + &quot;peso=&quot; + peso + &quot;, altura=&quot; + altura + &quot;, imc=&quot; + imc +
+          &quot;, classificacao='&quot; + classificacao + '\'' +
+          &quot;, dataHora=&quot; + dataHora + '}';
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

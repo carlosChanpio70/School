@@ -4,5 +4,7 @@
 			"path": "IMC"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"java.debug.settings.onBuildFailureProceed": true
+	}
 }

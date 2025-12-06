@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ValidadorDados.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">IMC</a> &gt; <a href="index.source.html" class="el_package">com.example</a> &gt; <span class="el_source">ValidadorDados.java</span></div><h1>ValidadorDados.java</h1><pre class="source lang-java linenums">package com.example;
+
+public final class ValidadorDados {
+
+  private ValidadorDados() {
+    // Classe utilitária - não instancia
+  }
+
+  public static boolean validarPeso(double peso) {
+<span class="nc bnc" id="L10" title="All 4 branches missed.">    return peso &gt; 0 &amp;&amp; peso &lt; 500;</span>
+  }
+
+  public static boolean validarAltura(double altura) {
+<span class="nc bnc" id="L14" title="All 4 branches missed.">    return altura &gt; 0 &amp;&amp; altura &lt; 3;</span>
+  }
+
+  public static boolean validarIdade(int idade) {
+<span class="nc bnc" id="L18" title="All 4 branches missed.">    return idade &gt; 0 &amp;&amp; idade &lt; 150;</span>
+  }
+
+  public static boolean validarNome(String nome) {
+<span class="nc bnc" id="L22" title="All 6 branches missed.">    return nome != null &amp;&amp; !nome.trim().isEmpty() &amp;&amp; nome.length() &lt;= 100;</span>
+  }
+
+  public static boolean validarGenero(String genero) {
+<span class="nc bnc" id="L26" title="All 2 branches missed.">    return genero != null &amp;&amp;</span>
+<span class="nc bnc" id="L27" title="All 4 branches missed.">        (genero.equalsIgnoreCase(&quot;M&quot;) || genero.equalsIgnoreCase(&quot;F&quot;));</span>
+  }
+
+<span class="nc bnc" id="L30" title="All 4 branches missed.">  public static boolean validarIMC(double imc) { return imc &gt;= 0 &amp;&amp; imc &lt; 100; }</span>
+
+  public static String validarPessoa(String nome, int idade, String genero,
+                                     double peso, double altura) {
+<span class="nc bnc" id="L34" title="All 2 branches missed.">    if (!validarNome(nome)) {</span>
+<span class="nc" id="L35">      return &quot;Nome inválido&quot;;</span>
+    }
+<span class="nc bnc" id="L37" title="All 2 branches missed.">    if (!validarIdade(idade)) {</span>
+<span class="nc" id="L38">      return &quot;Idade inválida&quot;;</span>
+    }
+<span class="nc bnc" id="L40" title="All 2 branches missed.">    if (!validarGenero(genero)) {</span>
+<span class="nc" id="L41">      return &quot;Gênero deve ser M ou F&quot;;</span>
+    }
+<span class="nc bnc" id="L43" title="All 2 branches missed.">    if (!validarPeso(peso)) {</span>
+<span class="nc" id="L44">      return &quot;Peso deve estar entre 0 e 500 kg&quot;;</span>
+    }
+<span class="nc bnc" id="L46" title="All 2 branches missed.">    if (!validarAltura(altura)) {</span>
+<span class="nc" id="L47">      return &quot;Altura deve estar entre 0 e 3 metros&quot;;</span>
+    }
+<span class="nc" id="L49">    return null;</span>
+  }
+
+  public static double limitarCasasDecimais(double valor, int casas) {
+<span class="nc bnc" id="L53" title="All 2 branches missed.">    if (casas &lt; 0) {</span>
+<span class="nc" id="L54">      throw new IllegalArgumentException(</span>
+          &quot;Número de casas decimais não pode ser negativo&quot;);
+    }
+<span class="nc" id="L57">    double multiplicador = Math.pow(10, casas);</span>
+<span class="nc" id="L58">    return Math.round(valor * multiplicador) / multiplicador;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

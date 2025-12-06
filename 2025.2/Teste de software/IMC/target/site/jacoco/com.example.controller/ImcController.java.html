@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ImcController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">IMC</a> &gt; <a href="index.source.html" class="el_package">com.example.controller</a> &gt; <span class="el_source">ImcController.java</span></div><h1>ImcController.java</h1><pre class="source lang-java linenums">package com.example.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.example.ClassificacaoIMC;
+import com.example.IMC;
+import com.example.Pessoa;
+import com.example.ValidadorDados;
+
+@Controller
+<span class="fc" id="L15">public class ImcController {</span>
+  private static final String ABAIXO_DO_PESO = &quot;Abaixo do peso&quot;;
+  private static final String PESO_NORMAL = &quot;No peso normal&quot;;
+  private static final String MARGINALMENTE_ACIMA =&quot;Marginalmente acima do peso&quot;;
+  private static final String ACIMA_DO_PESO_IDEAL = &quot;Acima do peso ideal&quot;;
+  private static final String OBESO = &quot;Obeso&quot;;
+
+  @GetMapping(&quot;/&quot;)
+  public String index() {
+    // redirect to static index.html so no view resolver is required
+<span class="nc" id="L25">    return &quot;redirect:/index.html&quot;;</span>
+  }
+
+  @PostMapping(&quot;/calcular&quot;)
+  @ResponseBody
+  public ImcResponse calcularImc(@RequestParam String genero,
+                                 @RequestParam double peso,
+                                 @RequestParam double altura) {
+
+    try {
+      // Validate input
+<span class="nc bnc" id="L36" title="All 2 branches missed.">      if (!ValidadorDados.validarGenero(genero)) {</span>
+<span class="nc" id="L37">        return new ImcResponse(false, 0, null, &quot;Gênero inválido&quot;);</span>
+      }
+<span class="nc bnc" id="L39" title="All 2 branches missed.">      if (!ValidadorDados.validarPeso(peso)) {</span>
+<span class="nc" id="L40">        return new ImcResponse(false, 0, null,</span>
+                               &quot;Peso deve estar entre 0 e 500 kg&quot;);
+      }
+<span class="nc bnc" id="L43" title="All 2 branches missed.">      if (!ValidadorDados.validarAltura(altura)) {</span>
+<span class="nc" id="L44">        return new ImcResponse(false, 0, null,</span>
+                               &quot;Altura deve estar entre 0 e 3 metros&quot;);
+      }
+
+<span class="nc" id="L48">      IMC imc = new IMC(genero, peso, altura);</span>
+<span class="nc" id="L49">      double imcValue = imc.getIMC();</span>
+<span class="nc" id="L50">      String classification = classificarIMC(genero, imcValue);</span>
+
+<span class="nc" id="L52">      return new ImcResponse(true, imcValue, classification, null);</span>
+<span class="nc" id="L53">    } catch (IllegalArgumentException e) {</span>
+<span class="nc" id="L54">      return new ImcResponse(false, 0, null, e.getMessage());</span>
+    }
+  }
+
+  @PostMapping(&quot;/validar-pessoa&quot;)
+  @ResponseBody
+  public ValidationResponse
+  validarPessoa(@RequestParam String nome, @RequestParam int idade,
+                @RequestParam String genero, @RequestParam double peso,
+                @RequestParam double altura) {
+    try {
+<span class="nc" id="L65">      String erro =</span>
+<span class="nc" id="L66">          ValidadorDados.validarPessoa(nome, idade, genero, peso, altura);</span>
+<span class="nc bnc" id="L67" title="All 2 branches missed.">      if (erro != null) {</span>
+<span class="nc" id="L68">        return new ValidationResponse(false, erro);</span>
+      }
+
+      // Create Pessoa object if validation passes
+<span class="nc" id="L72">      Pessoa pessoa = new Pessoa(nome, idade, genero, peso, altura);</span>
+<span class="nc" id="L73">      return new ValidationResponse(true, &quot;Dados válidos: &quot; + pessoa.getNome());</span>
+<span class="nc" id="L74">    } catch (IllegalArgumentException e) {</span>
+<span class="nc" id="L75">      return new ValidationResponse(false, e.getMessage());</span>
+    }
+  }
+
+  @GetMapping(&quot;/classificacoes&quot;)
+  @ResponseBody
+  public ClassificacaoResponse obterClassificacoes() {
+<span class="nc" id="L82">    ClassificacaoIMC[] masculino = {</span>
+        new ClassificacaoIMC(ABAIXO_DO_PESO, 0, 20.7),
+        new ClassificacaoIMC(PESO_NORMAL, 20.7, 26.4),
+        new ClassificacaoIMC(MARGINALMENTE_ACIMA, 26.4, 27.8),
+        new ClassificacaoIMC(ACIMA_DO_PESO_IDEAL, 27.8, 31.1),
+        new ClassificacaoIMC(OBESO, 31.1, 100)};
+
+<span class="nc" id="L89">    ClassificacaoIMC[] feminino = {</span>
+        new ClassificacaoIMC(ABAIXO_DO_PESO, 0, 19.1),
+        new ClassificacaoIMC(PESO_NORMAL, 19.1, 25.8),
+        new ClassificacaoIMC(MARGINALMENTE_ACIMA, 25.8, 27.3),
+        new ClassificacaoIMC(ACIMA_DO_PESO_IDEAL, 27.3, 32.3),
+        new ClassificacaoIMC(OBESO, 32.3, 100)};
+
+<span class="nc" id="L96">    return new ClassificacaoResponse(masculino, feminino);</span>
+  }
+
+  private String classificarIMC(String genero, double imc) {
+    double[] ranges;
+
+<span class="fc bfc" id="L102" title="All 2 branches covered.">    if (&quot;M&quot;.equalsIgnoreCase(genero)) {</span>
+<span class="fc" id="L103">      ranges = new double[] {20.7, 26.4, 27.8, 31.1};</span>
+<span class="pc bpc" id="L104" title="1 of 2 branches missed.">    } else if (&quot;F&quot;.equalsIgnoreCase(genero)) {</span>
+<span class="fc" id="L105">      ranges = new double[] {19.1, 25.8, 27.3, 32.3};</span>
+    } else {
+<span class="nc" id="L107">      return &quot;Gênero inválido&quot;;</span>
+    }
+
+<span class="fc bfc" id="L110" title="All 2 branches covered.">    if (imc &lt; ranges[0]) {</span>
+<span class="fc" id="L111">      return ABAIXO_DO_PESO;</span>
+<span class="fc bfc" id="L112" title="All 2 branches covered.">    } else if (imc &lt; ranges[1]) {</span>
+<span class="fc" id="L113">      return PESO_NORMAL;</span>
+<span class="fc bfc" id="L114" title="All 2 branches covered.">    } else if (imc &lt; ranges[2]) {</span>
+<span class="fc" id="L115">      return MARGINALMENTE_ACIMA;</span>
+<span class="fc bfc" id="L116" title="All 2 branches covered.">    } else if (imc &lt; ranges[3]) {</span>
+<span class="fc" id="L117">      return ACIMA_DO_PESO_IDEAL;</span>
+    } else {
+<span class="fc" id="L119">      return OBESO;</span>
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

@@ -2,7 +2,7 @@ package com.example;
 
 public final class ValidadorDados {
 
-  private ValidadorDados() {
+  ValidadorDados() {
     // Classe utilitária - não instancia
   }
 

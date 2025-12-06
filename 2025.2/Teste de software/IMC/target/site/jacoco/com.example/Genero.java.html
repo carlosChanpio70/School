@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Genero.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">IMC</a> &gt; <a href="index.source.html" class="el_package">com.example</a> &gt; <span class="el_source">Genero.java</span></div><h1>Genero.java</h1><pre class="source lang-java linenums">package com.example;
+
+public final class Genero {
+  private String sgenero;
+  private double[] imclista;
+
+<span class="nc" id="L7">  public Genero(String genero) {</span>
+<span class="nc" id="L8">    setGenero(genero);</span>
+<span class="nc" id="L9">    setIMCLista();</span>
+<span class="nc" id="L10">  }</span>
+
+<span class="nc" id="L12">  public String getGenero() { return sgenero; }</span>
+
+<span class="nc" id="L14">  public double[] getIMCLista() { return imclista; }</span>
+
+  public void setGenero(String genero) {
+<span class="nc" id="L17">    this.sgenero = genero.toUpperCase().trim();</span>
+<span class="nc" id="L18">  }</span>
+
+  public void setIMCLista() {
+<span class="nc bnc" id="L21" title="All 3 branches missed.">    switch (this.sgenero) {</span>
+    case &quot;M&quot;:
+<span class="nc" id="L23">      this.imclista = new double[] {20.7, 26.4, 27.8, 31.1};</span>
+<span class="nc" id="L24">      break;</span>
+    case &quot;F&quot;:
+<span class="nc" id="L26">      this.imclista = new double[] {19.1, 25.8, 27.3, 32.3};</span>
+<span class="nc" id="L27">      break;</span>
+    default:
+<span class="nc" id="L29">      throw new IllegalArgumentException(&quot;Genero inválido&quot;);</span>
+    }
+<span class="nc" id="L31">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>
