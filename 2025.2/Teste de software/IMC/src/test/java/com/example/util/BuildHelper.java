@@ -19,7 +19,7 @@ public class BuildHelper {
         Files.walk(base)
             .filter(p -> p.toString().endsWith(".class"))
             // use full path to the .class file because ckjm_ext reads files
-            .map(p -> p.toString())
+            .map(Object::toString)
             // remove inner class files (keep only top-level .class)
             .filter(s -> !s.contains("$"))
             .distinct()

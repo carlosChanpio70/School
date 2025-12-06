@@ -23,13 +23,6 @@ com.example.controller.ValidationResponse 5 1 0 1 6 0 1 0 5 0.5000 30 1.0000 0 0
  ~ public void setMessage(String message): 1
  ~ public String getMessage(): 1
 
-com.example.util.BuildHelper 5 1 0 3 26 10 0 3 2 2.0000 85 0.0000 0 0.0000 0.2500 0 0 16.0000
- ~ public static void main(String[] args): 3
- ~ private static synthetic boolean lambda$2(String s): 2
- ~ private static synthetic String lambda$1(java.nio.file.Path p): 1
- ~ public void <init>(): 1
- ~ private static synthetic boolean lambda$0(java.nio.file.Path p): 1
-
 com.example.Pessoa 16 1 0 3 24 70 1 2 16 0.7889 171 1.0000 1 0.0000 0.3125 0 0 9.3125
  ~ public String getGenero(): 1
  ~ public com.example.IMC getImc(): 1

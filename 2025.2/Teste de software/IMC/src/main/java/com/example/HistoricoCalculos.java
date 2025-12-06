@@ -6,7 +6,7 @@ import java.util.List;
 
 public final class HistoricoCalculos {
   private String idPessoa;
-  private List<RegistroCalculo> registros;
+  private final List<RegistroCalculo> registros;
 
   public HistoricoCalculos(String idPessoa) {
     setIdPessoa(idPessoa);
@@ -67,11 +67,11 @@ public final class HistoricoCalculos {
 
   // Classe interna para representar um registro de cálculo
   public static final class RegistroCalculo {
-    private double peso;
-    private double altura;
-    private double imc;
-    private String classificacao;
-    private LocalDateTime dataHora;
+    private final double peso;
+    private final double altura;
+    private final double imc;
+    private final String classificacao;
+    private final LocalDateTime dataHora;
 
     public RegistroCalculo(double peso, double altura, double imc,
                            String classificacao) {
