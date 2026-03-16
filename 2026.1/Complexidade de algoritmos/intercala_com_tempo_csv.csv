@@ -1,0 +1,5 @@
+Type_Of_Execution,Time
+Ascending sort,0.004230499267578125
+Descending sort,0.002300262451171875
+"Large dataset (10,000)",13.34585452079773
+"Binary search (10,000 elements)",9.441375732421875e-06
